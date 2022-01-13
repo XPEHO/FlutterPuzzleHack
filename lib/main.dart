@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Puzzle',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.app_name,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -57,7 +60,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
               ),
               ElevatedButton(
                 onPressed: () => _shuffle(),
-                child: const Text('Shuffle'),
+                child: Text(AppLocalizations.of(context)!.shuffle),
               ),
             ],
           ),
