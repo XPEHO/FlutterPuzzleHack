@@ -57,7 +57,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
               ),
               ElevatedButton(
                 onPressed: () => _shuffle(),
-                child: Text('Shuffle'),
+                child: const Text('Shuffle'),
               ),
             ],
           ),
@@ -88,7 +88,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
         child: Center(
           child: Text(
             '$value',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -116,14 +116,53 @@ class _PuzzlePageState extends State<PuzzlePage> {
 
     // check if the tile is in the same row or column
     if (emptyRow == tileRow || emptyCol == tileCol) {
-      // get all tiles between the empty tile and the tile
+      final int indexGap = (emptyIndex - valueIndex).abs();
+      if ([1, _complexity].contains(indexGap)) {
+        _moveSingleTile(emptyIndex, valueIndex);
+      } else {
+        _moveRowOrColumn(
+          emptyIndex: emptyIndex,
+          valueIndex: valueIndex,
+          emptyRow: emptyRow,
+          emptyCol: emptyCol,
+          tileRow: tileRow,
+          tileCol: tileCol,
+        );
+      }
+    }
+  }
 
-      // rebuild the widget
+  void _moveSingleTile(int emptyIndex, int valueIndex) {
+    setState(() {
+      // swap the tiles
+      final int temp = _data[emptyIndex];
+      _data[emptyIndex] = _data[valueIndex];
+      _data[valueIndex] = temp;
+    });
+  }
+
+  // move the row or column
+  _moveRowOrColumn({
+    required int emptyIndex,
+    required int valueIndex,
+    required int tileRow,
+    required int tileCol,
+    required int emptyRow,
+    required int emptyCol,
+  }) {
+    late int step;
+    if (tileRow == emptyRow) {
+      // move tiles on row between
+      step = tileCol > emptyCol ? 1 : -1;
+    } else if (tileCol == emptyCol) {
+      // move tiles on column between
+      step = tileRow > emptyRow ? _complexity : -1 * _complexity;
+    }
+    for (int i = emptyIndex; i != valueIndex; i += step) {
       setState(() {
-        // swap the tiles
-        final int temp = _data[emptyIndex];
-        _data[emptyIndex] = _data[valueIndex];
-        _data[valueIndex] = temp;
+        final int temp = _data[i];
+        _data[i] = _data[i + step];
+        _data[i + step] = temp;
       });
     }
   }
