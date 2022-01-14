@@ -1,0 +1,10 @@
+{
+    "app_name": "Puzzle",
+    "@app_name": {
+      "description": "Name of the application"
+    },
+    "shuffle": "Shuffle",
+    "@shuffle": {
+      "description": "Shuffle button label"
+    }
+}

@@ -1,5 +1,5 @@
 name: puzzle
-description: A new Flutter project.
+description: Xpeho mobile FlutterPuzzleHack participation
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -29,7 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations: 
+    sdk: flutter         
+  intl: ^0.17.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -51,6 +53,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
