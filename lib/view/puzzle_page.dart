@@ -38,7 +38,6 @@ class PuzzlePage extends StatelessWidget {
     );
   }
 
-
   void _trySwap(BuildContext context, int tileValue) {
     context.read<PuzzleCubit>().trySwap(tileValue);
   }
