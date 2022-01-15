@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzle/bloc/bloc.dart';
 
 class PuzzleCubit extends Cubit<PuzzleState> {
-
   PuzzleCubit() : super(PuzzleState(4));
 
   // _shuffle method
@@ -76,5 +75,4 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     }
     emit(PuzzleState(state.complexity, values: state.data));
   }
-
 }
