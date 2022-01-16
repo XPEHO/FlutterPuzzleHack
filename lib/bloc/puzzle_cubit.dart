@@ -4,13 +4,13 @@ import 'package:puzzle/bloc/bloc.dart';
 class PuzzleCubit extends Cubit<PuzzleState> {
   PuzzleCubit() : super(PuzzleState(4));
 
-  // _shuffle method
+  /// _shuffle method
   void shuffle() {
     state.data.shuffle();
     emit(PuzzleState(state.complexity, values: state.data));
   }
 
-  // try to swap the tile with the empty tile
+  /// try to swap the tile with the empty tile
   trySwap(int value) {
     final int emptyIndex = state.data.indexOf(0);
 
@@ -43,6 +43,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     }
   }
 
+  /// perform a swap between two tiles
   void _moveSingleTile(int emptyIndex, int valueIndex) {
     // swap the tiles
     final int temp = state.data[emptyIndex];
@@ -51,7 +52,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     emit(PuzzleState(state.complexity, values: state.data));
   }
 
-  // move the row or column
+  /// move a full row or column depending on the empty tile position
   _moveRowOrColumn({
     required int emptyIndex,
     required int valueIndex,
@@ -73,6 +74,74 @@ class PuzzleCubit extends Cubit<PuzzleState> {
       state.data[i] = state.data[i + step];
       state.data[i + step] = temp;
     }
+    emit(PuzzleState(state.complexity, values: state.data));
+  }
+
+  /// try to swap empty tile and the one on the right
+  void trySwapLeft() {
+    final int emptyIndex = state.data.indexOf(0);
+
+    if (emptyIndex > 0 && (emptyIndex + 1) % state.complexity == 0) {
+      return;
+    }
+
+    final int valueIndex = emptyIndex + 1;
+
+    _moveSingleTile(emptyIndex, valueIndex);
+  }
+
+  /// try to swap empty tile and the one on the left
+  void trySwapRight() {
+    final int emptyIndex = state.data.indexOf(0);
+
+    if (emptyIndex == 0 || (emptyIndex + 1) % state.complexity == 1) {
+      return;
+    }
+
+    final int valueIndex = emptyIndex - 1;
+
+    _moveSingleTile(emptyIndex, valueIndex);
+  }
+
+  /// try to swap empty tile and the one above
+  void trySwapUp() {
+    final int emptyIndex = state.data.indexOf(0);
+    final int emptyRow = emptyIndex ~/ state.complexity;
+
+    if (emptyRow == state.complexity - 1) {
+      return;
+    }
+
+    final int valueIndex = emptyIndex + state.complexity;
+
+    _moveSingleTile(emptyIndex, valueIndex);
+  }
+
+  /// try to swap empty tile and the one below
+  void trySwapDown() {
+    final int emptyIndex = state.data.indexOf(0);
+    final int emptyRow = emptyIndex ~/ state.complexity;
+
+    if (emptyRow == 0) {
+      return;
+    }
+
+    final int valueIndex = emptyIndex - state.complexity;
+
+    _moveSingleTile(emptyIndex, valueIndex);
+  }
+
+  /// increase complexity of the puzzle
+  void increaseComplexity() {
+    state.complexity++;
+    state.data = state.generateValues();
+    emit(PuzzleState(state.complexity, values: state.data));
+  }
+
+  /// decrease complexity of the puzzle
+  void decreaseComplexity() {
+    state.complexity--;
+    state.data = state.generateValues();
     emit(PuzzleState(state.complexity, values: state.data));
   }
 }
