@@ -6,5 +6,15 @@
     "shuffle": "Shuffle",
     "@shuffle": {
       "description": "Shuffle button label"
+    },
+    "complexity": "Complexity {complexityValue}",
+    "@complexity": {
+      "description": "Complexity label",
+      "placeholders": {
+        "complexityValue": {
+          "description": "the value of the puzzle complexity",
+          "example": "4"
+        }
+      }
     }
 }

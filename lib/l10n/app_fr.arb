@@ -1,4 +1,5 @@
 {
     "app_name": "Puzzle",
-    "shuffle": "Mélanger"
+    "shuffle": "Mélanger",
+    "complexity": "Complexité {complexityValue}"
 }
