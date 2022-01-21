@@ -1,12 +1,15 @@
+import 'package:puzzle/models/models.dart';
+
 class PuzzleState {
-  late int complexity;
-  late List<int> data;
+  final Puzzle puzzle;
 
-  PuzzleState(this.complexity, {List<int>? values}) {
-    data = values ?? generateValues();
-  }
+  PuzzleState(this.puzzle);
 
-  List<int> generateValues() {
-    return List<int>.generate(complexity * complexity, (i) => i);
-  }
+  int get complexity => puzzle.complexity;
+
+  List<Tile> get data => puzzle.data;
+
+  List<int> get values => puzzle.data.map((tile) => tile.value).toList();
+
+  int indexOf(int value) => values.indexOf(value);
 }

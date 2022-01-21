@@ -50,9 +50,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<PuzzleCubit, PuzzleState>(
       builder: (context, state) => Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     focusNode: _puzzleFocusNode,
                     child: Puzzle(
                       size: state.complexity,
-                      data: state.data,
+                      data: state.values,
                       onTileTapped: (value) => _trySwap(context, value),
                     ),
                   ),
@@ -82,6 +82,12 @@ class _PuzzlePageState extends State<PuzzlePage> {
                         onPressed: () => _shuffle(context),
                         icon: const Icon(Icons.shuffle),
                         label: Text(AppLocalizations.of(context)!.shuffle),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: () => _solve(context),
+                        icon: const Icon(Icons.done),
+                        label: Text(AppLocalizations.of(context)!.solve),
                       ),
                       const SizedBox(height: 16),
                       FloatingActionButton.small(
@@ -154,6 +160,12 @@ class _PuzzlePageState extends State<PuzzlePage> {
   /// Shuffle the puzzle.
   void _shuffle(BuildContext context) {
     context.read<PuzzleCubit>().shuffle();
+    _puzzleFocusNode.requestFocus();
+  }
+
+  /// Solve the puzzle.
+  void _solve(BuildContext context) {
+    context.read<PuzzleCubit>().solve();
     _puzzleFocusNode.requestFocus();
   }
 

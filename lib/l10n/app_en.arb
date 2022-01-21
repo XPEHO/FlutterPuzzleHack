@@ -16,5 +16,9 @@
           "example": "4"
         }
       }
+    },
+    "solve": "Solve",
+    "@solve": {
+      "description": "Solve button label"
     }
 }

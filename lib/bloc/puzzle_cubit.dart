@@ -1,25 +1,44 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/models/models.dart';
 
 class PuzzleCubit extends Cubit<PuzzleState> {
-  PuzzleCubit() : super(PuzzleState(4));
+  PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)));
 
-  /// _shuffle method
   void shuffle() {
-    state.data.shuffle();
-    emit(PuzzleState(state.complexity, values: state.data));
+    var puzzle = state.puzzle.shuffle();
+    emit(
+      PuzzleState(
+        Puzzle(
+          complexity: puzzle.complexity,
+          data: puzzle.data,
+        ),
+      ),
+    );
+  }
+
+  void solve() {
+    var puzzle = Puzzle.solve(state.puzzle);
+    emit(
+      PuzzleState(
+        Puzzle(
+          complexity: puzzle.complexity,
+          data: puzzle.data,
+        ),
+      ),
+    );
   }
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
-    final int emptyIndex = state.data.indexOf(0);
+    final int emptyIndex = state.indexOf(0);
 
     // get empty row and column
     final int emptyRow = emptyIndex ~/ state.complexity;
     final int emptyCol = emptyIndex % state.complexity;
 
     // get value index
-    final int valueIndex = state.data.indexOf(value);
+    final int valueIndex = state.indexOf(value);
 
     // get tile row and column
     final int tileRow = valueIndex ~/ state.complexity;
@@ -46,10 +65,14 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   /// perform a swap between two tiles
   void _moveSingleTile(int emptyIndex, int valueIndex) {
     // swap the tiles
-    final int temp = state.data[emptyIndex];
+    final Tile temp = state.data[emptyIndex];
     state.data[emptyIndex] = state.data[valueIndex];
     state.data[valueIndex] = temp;
-    emit(PuzzleState(state.complexity, values: state.data));
+    emit(
+      PuzzleState(
+        Puzzle(complexity: state.complexity, data: state.data),
+      ),
+    );
   }
 
   /// move a full row or column depending on the empty tile position
@@ -70,16 +93,20 @@ class PuzzleCubit extends Cubit<PuzzleState> {
       step = tileRow > emptyRow ? state.complexity : -1 * state.complexity;
     }
     for (int i = emptyIndex; i != valueIndex; i += step) {
-      final int temp = state.data[i];
+      final Tile temp = state.data[i];
       state.data[i] = state.data[i + step];
       state.data[i + step] = temp;
     }
-    emit(PuzzleState(state.complexity, values: state.data));
+    emit(
+      PuzzleState(
+        Puzzle(complexity: state.complexity, data: state.data),
+      ),
+    );
   }
 
   /// try to swap empty tile and the one on the right
   void trySwapLeft() {
-    final int emptyIndex = state.data.indexOf(0);
+    final int emptyIndex = state.values.indexOf(0);
 
     if (emptyIndex > 0 && (emptyIndex + 1) % state.complexity == 0) {
       return;
@@ -92,7 +119,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap empty tile and the one on the left
   void trySwapRight() {
-    final int emptyIndex = state.data.indexOf(0);
+    final int emptyIndex = state.values.indexOf(0);
 
     if (emptyIndex == 0 || (emptyIndex + 1) % state.complexity == 1) {
       return;
@@ -105,7 +132,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap empty tile and the one above
   void trySwapUp() {
-    final int emptyIndex = state.data.indexOf(0);
+    final int emptyIndex = state.values.indexOf(0);
     final int emptyRow = emptyIndex ~/ state.complexity;
 
     if (emptyRow == state.complexity - 1) {
@@ -119,7 +146,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap empty tile and the one below
   void trySwapDown() {
-    final int emptyIndex = state.data.indexOf(0);
+    final int emptyIndex = state.values.indexOf(0);
     final int emptyRow = emptyIndex ~/ state.complexity;
 
     if (emptyRow == 0) {
@@ -133,15 +160,11 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// increase complexity of the puzzle
   void increaseComplexity() {
-    state.complexity++;
-    state.data = state.generateValues();
-    emit(PuzzleState(state.complexity, values: state.data));
+    emit(PuzzleState(Puzzle.generate(state.puzzle.complexity + 1)));
   }
 
   /// decrease complexity of the puzzle
   void decreaseComplexity() {
-    state.complexity--;
-    state.data = state.generateValues();
-    emit(PuzzleState(state.complexity, values: state.data));
+    emit(PuzzleState(Puzzle.generate(state.puzzle.complexity - 1)));
   }
 }
