@@ -44,7 +44,7 @@ class Puzzle {
       .reduce((a, b) => a + b);
 
   /// perform a swap between two tiles
-  Puzzle _move(int value) {
+  Puzzle move(int value) {
     final newData = List<Tile>.from(data);
 
     /// find the tile with the value
@@ -84,7 +84,7 @@ class Puzzle {
 
     final int valueIndex = emptyIndex + 1;
 
-    return _move(data[valueIndex].value);
+    return move(data[valueIndex].value);
   }
 
   bool canSwapRight() {
@@ -105,7 +105,7 @@ class Puzzle {
 
     final int valueIndex = emptyIndex - 1;
 
-    return _move(data[valueIndex].value);
+    return move(data[valueIndex].value);
   }
 
   bool canSwapUp() {
@@ -128,7 +128,7 @@ class Puzzle {
 
     final int valueIndex = emptyIndex + complexity;
 
-    return _move(data[valueIndex].value);
+    return move(data[valueIndex].value);
   }
 
   bool canSwapDown() {
@@ -151,7 +151,68 @@ class Puzzle {
 
     final int valueIndex = emptyIndex - complexity;
 
-    return _move(data[valueIndex].value);
+    return move(data[valueIndex].value);
+  }
+
+  /// try to swap the tile with the empty tile
+  Puzzle trySwap(int value) {
+    final int emptyIndex = values.indexOf(0);
+
+    // get empty row and column
+    final int emptyRow = emptyIndex ~/ complexity;
+    final int emptyCol = emptyIndex % complexity;
+
+    // get value index
+    final int valueIndex = values.indexOf(value);
+
+    // get tile row and column
+    final int tileRow = valueIndex ~/ complexity;
+    final int tileCol = valueIndex % complexity;
+
+    // check if the tile is in the same row or column
+    if (emptyRow == tileRow || emptyCol == tileCol) {
+      final int indexGap = (emptyIndex - valueIndex).abs();
+      if ([1, complexity].contains(indexGap)) {
+        return move(value);
+      } else {
+        return moveRowOrColumn(
+          emptyIndex: emptyIndex,
+          valueIndex: valueIndex,
+          tileRow: tileRow,
+          tileCol: tileCol,
+          emptyRow: emptyRow,
+          emptyCol: emptyCol,
+        );
+      }
+    }
+    return this;
+  }
+
+  /// move a full row or column depending on the empty tile position
+  Puzzle moveRowOrColumn({
+    required int emptyIndex,
+    required int valueIndex,
+    required int tileRow,
+    required int tileCol,
+    required int emptyRow,
+    required int emptyCol,
+  }) {
+    final newData = List<Tile>.from(data);
+    late int step;
+    if (tileRow == emptyRow) {
+      // move tiles on row between
+      step = tileCol > emptyCol ? 1 : -1;
+    } else if (tileCol == emptyCol) {
+      // move tiles on column between
+      step = tileRow > emptyRow ? complexity : -1 * complexity;
+    }
+    for (int i = emptyIndex; i != valueIndex; i += step) {
+      final Tile temp = newData[i];
+      newData[i] = newData[i + step];
+      newData[i + step] = temp;
+    }
+
+    return Puzzle(complexity: complexity, data: newData);
   }
 
   Puzzle shuffle() {

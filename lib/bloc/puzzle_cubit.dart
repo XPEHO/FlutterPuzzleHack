@@ -6,165 +6,49 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)));
 
   void shuffle() {
-    var puzzle = state.puzzle.shuffle();
-    emit(
-      PuzzleState(
-        Puzzle(
-          complexity: puzzle.complexity,
-          data: puzzle.data,
-        ),
-      ),
-    );
+    emitNewState(state.puzzle.shuffle());
   }
 
   void solve() {
-    var puzzle = Puzzle.solve(state.puzzle);
-    emit(
-      PuzzleState(
-        Puzzle(
-          complexity: puzzle.complexity,
-          data: puzzle.data,
-        ),
-      ),
-    );
+    emitNewState(Puzzle.solve(state.puzzle));
   }
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
-    final int emptyIndex = state.indexOf(0);
-
-    // get empty row and column
-    final int emptyRow = emptyIndex ~/ state.complexity;
-    final int emptyCol = emptyIndex % state.complexity;
-
-    // get value index
-    final int valueIndex = state.indexOf(value);
-
-    // get tile row and column
-    final int tileRow = valueIndex ~/ state.complexity;
-    final int tileCol = valueIndex % state.complexity;
-
-    // check if the tile is in the same row or column
-    if (emptyRow == tileRow || emptyCol == tileCol) {
-      final int indexGap = (emptyIndex - valueIndex).abs();
-      if ([1, state.complexity].contains(indexGap)) {
-        _moveSingleTile(emptyIndex, valueIndex);
-      } else {
-        _moveRowOrColumn(
-          emptyIndex: emptyIndex,
-          valueIndex: valueIndex,
-          emptyRow: emptyRow,
-          emptyCol: emptyCol,
-          tileRow: tileRow,
-          tileCol: tileCol,
-        );
-      }
-    }
-  }
-
-  /// perform a swap between two tiles
-  void _moveSingleTile(int emptyIndex, int valueIndex) {
-    // swap the tiles
-    final Tile temp = state.data[emptyIndex];
-    state.data[emptyIndex] = state.data[valueIndex];
-    state.data[valueIndex] = temp;
-    emit(
-      PuzzleState(
-        Puzzle(complexity: state.complexity, data: state.data),
-      ),
-    );
-  }
-
-  /// move a full row or column depending on the empty tile position
-  _moveRowOrColumn({
-    required int emptyIndex,
-    required int valueIndex,
-    required int tileRow,
-    required int tileCol,
-    required int emptyRow,
-    required int emptyCol,
-  }) {
-    late int step;
-    if (tileRow == emptyRow) {
-      // move tiles on row between
-      step = tileCol > emptyCol ? 1 : -1;
-    } else if (tileCol == emptyCol) {
-      // move tiles on column between
-      step = tileRow > emptyRow ? state.complexity : -1 * state.complexity;
-    }
-    for (int i = emptyIndex; i != valueIndex; i += step) {
-      final Tile temp = state.data[i];
-      state.data[i] = state.data[i + step];
-      state.data[i + step] = temp;
-    }
-    emit(
-      PuzzleState(
-        Puzzle(complexity: state.complexity, data: state.data),
-      ),
-    );
+    emitNewState(state.puzzle.trySwap(value));
   }
 
   /// try to swap empty tile and the one on the right
   void trySwapLeft() {
-    final int emptyIndex = state.values.indexOf(0);
-
-    if (emptyIndex > 0 && (emptyIndex + 1) % state.complexity == 0) {
-      return;
-    }
-
-    final int valueIndex = emptyIndex + 1;
-
-    _moveSingleTile(emptyIndex, valueIndex);
+    emitNewState(state.puzzle.trySwapLeft());
   }
 
   /// try to swap empty tile and the one on the left
   void trySwapRight() {
-    final int emptyIndex = state.values.indexOf(0);
-
-    if (emptyIndex == 0 || (emptyIndex + 1) % state.complexity == 1) {
-      return;
-    }
-
-    final int valueIndex = emptyIndex - 1;
-
-    _moveSingleTile(emptyIndex, valueIndex);
+    emitNewState(state.puzzle.trySwapRight());
   }
 
   /// try to swap empty tile and the one above
   void trySwapUp() {
-    final int emptyIndex = state.values.indexOf(0);
-    final int emptyRow = emptyIndex ~/ state.complexity;
-
-    if (emptyRow == state.complexity - 1) {
-      return;
-    }
-
-    final int valueIndex = emptyIndex + state.complexity;
-
-    _moveSingleTile(emptyIndex, valueIndex);
+    emitNewState(state.puzzle.trySwapUp());
   }
 
   /// try to swap empty tile and the one below
   void trySwapDown() {
-    final int emptyIndex = state.values.indexOf(0);
-    final int emptyRow = emptyIndex ~/ state.complexity;
-
-    if (emptyRow == 0) {
-      return;
-    }
-
-    final int valueIndex = emptyIndex - state.complexity;
-
-    _moveSingleTile(emptyIndex, valueIndex);
+    emitNewState(state.puzzle.trySwapDown());
   }
 
   /// increase complexity of the puzzle
   void increaseComplexity() {
-    emit(PuzzleState(Puzzle.generate(state.puzzle.complexity + 1)));
+    emitNewState(Puzzle.generate(state.puzzle.complexity + 1));
   }
 
   /// decrease complexity of the puzzle
   void decreaseComplexity() {
-    emit(PuzzleState(Puzzle.generate(state.puzzle.complexity - 1)));
+    emitNewState(Puzzle.generate(state.puzzle.complexity - 1));
+  }
+
+  void emitNewState(Puzzle newPuzzle) {
+    emit(PuzzleState(newPuzzle));
   }
 }
