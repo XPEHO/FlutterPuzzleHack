@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/view/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -18,6 +20,7 @@ class PuzzlePage extends StatefulWidget {
 class _PuzzlePageState extends State<PuzzlePage> {
   late ShakeDetector detector;
   late FocusNode _puzzleFocusNode;
+  AudioService audioService = AudioService();
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
   @override
   void dispose() {
     detector.stopListening();
+    audioService.dispose();
     super.dispose();
   }
 
@@ -89,6 +93,32 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       IconButton(
                         onPressed: _pickImage,
                         icon: const Icon(Icons.attach_file),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () => audioService.play(
+                                "assets/musics/Fractal.mp3",
+                                isLocal: true),
+                            icon: const Icon(Icons.play_arrow),
+                          ),
+                          IconButton(
+                            onPressed: () => audioService.stop(),
+                            icon: const Icon(Icons.stop),
+                          ),
+                          Slider(
+                            activeColor: Colors.indigoAccent,
+                            min: 0.0,
+                            max: 1.0,
+                            onChanged: (newRating) async {
+                              setState(() {
+                                audioService.volume = newRating;
+                              });
+                              audioService.updateVolume(newRating);
+                            },
+                            value: audioService.volume,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -180,6 +210,30 @@ class _PuzzlePageState extends State<PuzzlePage> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       context.read<PuzzleCubit>().loadUiImage(pickedFile);
+    }
+  }
+
+  void _handleScrollEvent(PointerScrollEvent event) {
+    if (event.scrollDelta.direction > 0) {
+      if (audioService.volume <= 0.9) {
+        setState(() {
+          audioService.updateVolume(audioService.volume + 0.1);
+        });
+      } else {
+        setState(() {
+          audioService.updateVolume(1.0);
+        });
+      }
+    } else {
+      if (audioService.volume >= 0.1) {
+        setState(() {
+          audioService.updateVolume(audioService.volume - 0.1);
+        });
+      } else {
+        setState(() {
+          audioService.updateVolume(0.0);
+        });
+      }
     }
   }
 }
