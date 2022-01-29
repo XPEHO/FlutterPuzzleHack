@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/view/widgets/widgets.dart';
 import 'package:shake/shake.dart';
@@ -68,8 +68,11 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     focusNode: _puzzleFocusNode,
                     child: Puzzle(
                       size: state.complexity,
-                      data: state.values,
-                      onTileTapped: (value) => _trySwap(context, value),
+                      data: state.data,
+                      onTileTapped: (value) {
+                        _trySwap(context, value);
+                        _puzzleFocusNode.requestFocus();
+                      },
                     ),
                   ),
                 ),
@@ -78,33 +81,14 @@ class _PuzzlePageState extends State<PuzzlePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ElevatedButton.icon(
+                      IconButton(
                         onPressed: () => _shuffle(context),
                         icon: const Icon(Icons.shuffle),
-                        label: Text(AppLocalizations.of(context)!.shuffle),
                       ),
                       const SizedBox(height: 16),
-                      ElevatedButton.icon(
-                        onPressed: () => _solve(context),
-                        icon: const Icon(Icons.done),
-                        label: Text(AppLocalizations.of(context)!.solve),
-                      ),
-                      const SizedBox(height: 16),
-                      FloatingActionButton.small(
-                        child: const Icon(Icons.remove),
-                        onPressed: () => _decreaseComplexity(context),
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!
-                            .complexity(state.complexity),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      FloatingActionButton.small(
-                        child: const Icon(Icons.add),
-                        onPressed: () => _increaseComplexity(context),
+                      IconButton(
+                        onPressed: _pickImage,
+                        icon: const Icon(Icons.attach_file),
                       ),
                     ],
                   ),
@@ -141,11 +125,17 @@ class _PuzzlePageState extends State<PuzzlePage> {
       } else if (event.logicalKey == LogicalKeyboardKey.space) {
         _shuffle(context);
         return KeyEventResult.handled;
+      } else if (event.logicalKey == LogicalKeyboardKey.enter) {
+        _solve(context);
+        return KeyEventResult.handled;
+      } else if (event.logicalKey == LogicalKeyboardKey.escape) {
+        _reset(context);
+        return KeyEventResult.handled;
       } else if (event.logicalKey == LogicalKeyboardKey.add) {
-        context.read<PuzzleCubit>().increaseComplexity();
+        _increaseComplexity(context);
         return KeyEventResult.handled;
       } else if (event.logicalKey == LogicalKeyboardKey.minus) {
-        context.read<PuzzleCubit>().decreaseComplexity();
+        _decreaseComplexity(context);
         return KeyEventResult.handled;
       }
     }
@@ -169,6 +159,12 @@ class _PuzzlePageState extends State<PuzzlePage> {
     _puzzleFocusNode.requestFocus();
   }
 
+  /// Reset the puzzle.
+  void _reset(BuildContext context) {
+    context.read<PuzzleCubit>().reset();
+    _puzzleFocusNode.requestFocus();
+  }
+
   void _increaseComplexity(BuildContext context) {
     context.read<PuzzleCubit>().increaseComplexity();
     _puzzleFocusNode.requestFocus();
@@ -177,5 +173,13 @@ class _PuzzlePageState extends State<PuzzlePage> {
   void _decreaseComplexity(BuildContext context) {
     context.read<PuzzleCubit>().decreaseComplexity();
     _puzzleFocusNode.requestFocus();
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      context.read<PuzzleCubit>().loadUiImage(pickedFile);
+    }
   }
 }
