@@ -1,4 +1,7 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/models/models.dart';
 
@@ -38,6 +41,11 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     emitNewState(state.puzzle.trySwapDown());
   }
 
+  /// reset the puzzle
+  void reset() {
+    emitNewState(Puzzle.generate(state.puzzle.complexity));
+  }
+
   /// increase complexity of the puzzle
   void increaseComplexity() {
     emitNewState(Puzzle.generate(state.puzzle.complexity + 1));
@@ -49,6 +57,13 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   }
 
   void emitNewState(Puzzle newPuzzle) {
-    emit(PuzzleState(newPuzzle));
+    emit(state.copyWith(puzzle: newPuzzle));
+  }
+
+  Future<void> loadUiImage(XFile pickedFile) async {
+    final bytes = await pickedFile.readAsBytes();
+    final codec = await ui.instantiateImageCodec(bytes);
+    final frame = await codec.getNextFrame();
+    emit(state.copyWith(image: frame.image));
   }
 }

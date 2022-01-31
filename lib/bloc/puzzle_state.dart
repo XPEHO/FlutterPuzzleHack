@@ -1,10 +1,16 @@
+import 'dart:ui' as ui;
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:puzzle/models/models.dart';
 
-class PuzzleState {
-  final Puzzle puzzle;
+part 'puzzle_state.freezed.dart';
 
-  PuzzleState(this.puzzle);
+@freezed
+class PuzzleState with _$PuzzleState {
+  factory PuzzleState(Puzzle puzzle, {ui.Image? image}) = _PuzzleState;
+}
 
+extension PuzzleStateExtension on PuzzleState {
   int get complexity => puzzle.complexity;
 
   List<Tile> get data => puzzle.data;

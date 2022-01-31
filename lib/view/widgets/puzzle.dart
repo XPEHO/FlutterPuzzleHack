@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/models/models.dart' as model;
 import 'package:puzzle/view/widgets/widgets.dart';
 
 typedef OnTileTapped = void Function(int tileValue);
 
 class Puzzle extends StatelessWidget {
   final int size;
-  final List<int> data;
+  final List<model.Tile> data;
   final OnTileTapped onTileTapped;
 
   const Puzzle({
@@ -23,8 +26,9 @@ class Puzzle extends StatelessWidget {
       crossAxisSpacing: 8.0,
       children: data.map((value) {
         return Tile(
-          value: value,
+          tile: value,
           onTap: onTileTapped,
+          gotImage: context.read<PuzzleCubit>().state.image != null,
         );
       }).toList(),
     );
