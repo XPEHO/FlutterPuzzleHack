@@ -52,78 +52,85 @@ class _PuzzlePageState extends State<PuzzlePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PuzzleCubit, PuzzleState>(
-      builder: (context, state) => Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Focus(
-                    onKey: (_, event) => _onKeyEvent(
-                      context,
-                      event,
-                    ),
-                    autofocus: true,
-                    canRequestFocus: true,
-                    focusNode: _puzzleFocusNode,
-                    child: Puzzle(
-                      size: state.complexity,
-                      data: state.data,
-                      onTileTapped: (value) {
-                        _trySwap(context, value);
-                        _puzzleFocusNode.requestFocus();
-                      },
+    return Listener(
+      onPointerSignal: (event) {
+        if (event is PointerScrollEvent) {
+          _handleScrollEvent(event);
+        }
+      },
+      child: BlocBuilder<PuzzleCubit, PuzzleState>(
+        builder: (context, state) => Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Focus(
+                      onKey: (_, event) => _onKeyEvent(
+                        context,
+                        event,
+                      ),
+                      autofocus: true,
+                      canRequestFocus: true,
+                      focusNode: _puzzleFocusNode,
+                      child: Puzzle(
+                        size: state.complexity,
+                        data: state.data,
+                        onTileTapped: (value) {
+                          _trySwap(context, value);
+                          _puzzleFocusNode.requestFocus();
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        onPressed: () => _shuffle(context),
-                        icon: const Icon(Icons.shuffle),
-                      ),
-                      const SizedBox(height: 16),
-                      IconButton(
-                        onPressed: _pickImage,
-                        icon: const Icon(Icons.attach_file),
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () => audioService.play(
-                                "assets/musics/Fractal.mp3",
-                                isLocal: true),
-                            icon: const Icon(Icons.play_arrow),
-                          ),
-                          IconButton(
-                            onPressed: () => audioService.stop(),
-                            icon: const Icon(Icons.stop),
-                          ),
-                          Slider(
-                            activeColor: Colors.indigoAccent,
-                            min: 0.0,
-                            max: 1.0,
-                            onChanged: (newRating) async {
-                              setState(() {
-                                audioService.volume = newRating;
-                              });
-                              audioService.updateVolume(newRating);
-                            },
-                            value: audioService.volume,
-                          ),
-                        ],
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: () => _shuffle(context),
+                          icon: const Icon(Icons.shuffle),
+                        ),
+                        const SizedBox(height: 16),
+                        IconButton(
+                          onPressed: _pickImage,
+                          icon: const Icon(Icons.attach_file),
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () => audioService.play(
+                                  "assets/musics/Fractal.mp3",
+                                  isLocal: true),
+                              icon: const Icon(Icons.play_arrow),
+                            ),
+                            IconButton(
+                              onPressed: () => audioService.stop(),
+                              icon: const Icon(Icons.stop),
+                            ),
+                            Slider(
+                              activeColor: Colors.indigoAccent,
+                              min: 0.0,
+                              max: 1.0,
+                              onChanged: (newRating) async {
+                                setState(() {
+                                  audioService.volume = newRating;
+                                });
+                                audioService.updateVolume(newRating);
+                              },
+                              value: audioService.volume,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
