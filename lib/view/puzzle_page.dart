@@ -100,30 +100,40 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           onPressed: _pickImage,
                           icon: const Icon(Icons.attach_file),
                         ),
-                        Row(
+                        Column(
                           children: [
-                            IconButton(
-                              onPressed: () => audioService.play(
-                                  "assets/musics/Fractal.mp3",
-                                  isLocal: true),
-                              icon: const Icon(Icons.play_arrow),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () => audioService.play(
+                                      "assets/musics/Fractal.mp3",
+                                      isLocal: true),
+                                  icon: const Icon(Icons.play_arrow),
+                                ),
+                                IconButton(
+                                  onPressed: () => audioService.stop(),
+                                  icon: const Icon(Icons.stop),
+                                ),
+                              ],
                             ),
-                            IconButton(
-                              onPressed: () => audioService.stop(),
-                              icon: const Icon(Icons.stop),
-                            ),
-                            Slider(
-                              activeColor: Colors.indigoAccent,
-                              min: 0.0,
-                              max: 1.0,
-                              onChanged: (newRating) async {
-                                setState(() {
-                                  audioService.volume = newRating;
-                                });
-                                audioService.updateVolume(newRating);
-                              },
-                              value: audioService.volume,
-                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.volume_down),
+                                Slider(
+                                  activeColor: Colors.indigoAccent,
+                                  min: 0.0,
+                                  max: 1.0,
+                                  onChanged: (newRating) async {
+                                    setState(() {
+                                      audioService.volume = newRating;
+                                    });
+                                    audioService.updateVolume(newRating);
+                                  },
+                                  value: audioService.volume,
+                                ),
+                                const Icon(Icons.volume_up),
+                              ],
+                            )
                           ],
                         ),
                       ],
