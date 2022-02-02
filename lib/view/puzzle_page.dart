@@ -104,14 +104,41 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           children: [
                             Row(
                               children: [
+                                if (!audioService.hasStarted)
+                                  IconButton(
+                                    onPressed: () async {
+                                      setState(() {
+                                        audioService.play(
+                                            "assets/musics/Fractal.mp3",
+                                            isLocal: true);
+                                      });
+                                    },
+                                    icon: const Icon(Icons.play_arrow),
+                                  ),
+                                if (audioService.hasStarted)
+                                  audioService.isPaused
+                                      ? IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              audioService.resume();
+                                            });
+                                          },
+                                          icon: const Icon(Icons.play_arrow),
+                                        )
+                                      : IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              audioService.pause();
+                                            });
+                                          },
+                                          icon: const Icon(Icons.pause),
+                                        ),
                                 IconButton(
-                                  onPressed: () => audioService.play(
-                                      "assets/musics/Fractal.mp3",
-                                      isLocal: true),
-                                  icon: const Icon(Icons.play_arrow),
-                                ),
-                                IconButton(
-                                  onPressed: () => audioService.stop(),
+                                  onPressed: () {
+                                    setState(() {
+                                      audioService.stop();
+                                    });
+                                  },
                                   icon: const Icon(Icons.stop),
                                 ),
                               ],
