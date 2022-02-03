@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/audio_service.dart';
+import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/view/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -249,27 +250,28 @@ class _PuzzlePageState extends State<PuzzlePage> {
                               ],
                             ),
                             const SizedBox(height: 16),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.volume_down),
-                                Flexible(
-                                  child: Slider(
-                                    activeColor: Colors.indigoAccent,
-                                    min: 0.0,
-                                    max: 1.0,
-                                    onChanged: (newRating) async {
-                                      setState(() {
-                                        audioService.volume = newRating;
-                                      });
-                                      audioService.updateVolume(newRating);
-                                    },
-                                    value: audioService.volume,
+                            if (!isMobile())
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.volume_down),
+                                  Flexible(
+                                    child: Slider(
+                                      activeColor: Colors.indigoAccent,
+                                      min: 0.0,
+                                      max: 1.0,
+                                      onChanged: (newRating) async {
+                                        setState(() {
+                                          audioService.volume = newRating;
+                                        });
+                                        audioService.updateVolume(newRating);
+                                      },
+                                      value: audioService.volume,
+                                    ),
                                   ),
-                                ),
-                                const Icon(Icons.volume_up),
-                              ],
-                            ),
+                                  const Icon(Icons.volume_up),
+                                ],
+                              ),
                           ],
                         ),
                       ),

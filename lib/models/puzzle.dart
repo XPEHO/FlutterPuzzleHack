@@ -154,6 +154,27 @@ class Puzzle {
     return move(data[valueIndex].value);
   }
 
+  bool canSwap(int value) {
+    final int emptyIndex = values.indexOf(0);
+
+    // get empty row and column
+    final int emptyRow = emptyIndex ~/ complexity;
+    final int emptyCol = emptyIndex % complexity;
+
+    // get value index
+    final int valueIndex = values.indexOf(value);
+
+    // get tile row and column
+    final int tileRow = valueIndex ~/ complexity;
+    final int tileCol = valueIndex % complexity;
+
+    // check if the tile is in the same row or column
+    if (emptyRow == tileRow || emptyCol == tileCol) {
+      return true;
+    }
+    return false;
+  }
+
   /// try to swap the tile with the empty tile
   Puzzle trySwap(int value) {
     final int emptyIndex = values.indexOf(0);

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
+import 'package:puzzle/services/shared.dart';
+import 'package:volume_controller/volume_controller.dart';
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -11,6 +15,10 @@ class AudioService {
     bool isLocal = false,
     bool shouldLoop = false,
   }) async {
+    if (isMobile()) {
+      volume = await VolumeController().getVolume();
+    }
+
     if (kIsWeb) {
       await _audioPlayer.play("assets/$url", isLocal: isLocal, volume: volume);
       if (shouldLoop) {
@@ -35,6 +43,9 @@ class AudioService {
 
   void updateVolume(double value) async {
     volume = value;
+    if (isMobile()) {
+      VolumeController().setVolume(volume);
+    }
     await _audioPlayer.setVolume(volume);
   }
 
