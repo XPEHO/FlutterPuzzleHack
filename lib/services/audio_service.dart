@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
