@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -7,9 +9,12 @@ class AudioService {
   void play(
     String url, {
     bool isLocal = false,
+    bool shouldLoop = false,
   }) async {
     await _audioPlayer.play(url, isLocal: isLocal, volume: volume);
-    await _audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    if (shouldLoop) {
+      await _audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    }
   }
 
   void stop() async {
@@ -32,5 +37,28 @@ class AudioService {
   void dispose() async {
     await _audioPlayer.stop();
     await _audioPlayer.dispose();
+  }
+
+  String getPlatformSound() {
+    if (kIsWeb) {
+      return "assets/musics/Error.mp3";
+    }
+
+    switch (Platform.operatingSystem) {
+      case "android":
+        return "assets/musics/Error.mp3";
+      case "fuchsia":
+        return "assets/musics/Error.mp3";
+      case "linux":
+        return "assets/musics/Error.mp3";
+      case "macos":
+        return "assets/musics/Error.mp3";
+      case "windows":
+        return "assets/musics/Error.mp3";
+      case "ios":
+        return "assets/musics/Error.mp3";
+      default:
+        return "assets/musics/Error.mp3";
+    }
   }
 }

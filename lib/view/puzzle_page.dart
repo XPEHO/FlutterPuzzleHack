@@ -100,48 +100,22 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           onPressed: _pickImage,
                           icon: const Icon(Icons.attach_file),
                         ),
-                        Column(
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () async {
-                                    setState(() {
-                                      audioService.play(
-                                          "assets/musics/Fractal.mp3",
-                                          isLocal: true);
-                                    });
-                                  },
-                                  icon: const Icon(Icons.play_arrow),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      audioService.stop();
-                                    });
-                                  },
-                                  icon: const Icon(Icons.stop),
-                                ),
-                              ],
+                            const Icon(Icons.volume_down),
+                            Slider(
+                              activeColor: Colors.indigoAccent,
+                              min: 0.0,
+                              max: 1.0,
+                              onChanged: (newRating) async {
+                                setState(() {
+                                  audioService.volume = newRating;
+                                });
+                                audioService.updateVolume(newRating);
+                              },
+                              value: audioService.volume,
                             ),
-                            Row(
-                              children: [
-                                const Icon(Icons.volume_down),
-                                Slider(
-                                  activeColor: Colors.indigoAccent,
-                                  min: 0.0,
-                                  max: 1.0,
-                                  onChanged: (newRating) async {
-                                    setState(() {
-                                      audioService.volume = newRating;
-                                    });
-                                    audioService.updateVolume(newRating);
-                                  },
-                                  value: audioService.volume,
-                                ),
-                                const Icon(Icons.volume_up),
-                              ],
-                            )
+                            const Icon(Icons.volume_up),
                           ],
                         ),
                       ],
@@ -164,7 +138,10 @@ class _PuzzlePageState extends State<PuzzlePage> {
     BuildContext context,
     RawKeyEvent event,
   ) {
+    final String sound = audioService.getPlatformSound();
+
     if (event.isKeyPressed(event.logicalKey)) {
+      audioService.play(sound, isLocal: true);
       if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
         context.read<PuzzleCubit>().trySwapLeft();
         return KeyEventResult.handled;
