@@ -8,7 +8,7 @@
 PRODUCT_NAME = puzzle
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = fr.piotrfleury.puzzle
+PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 fr.piotrfleury. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 fr.xpeho. All rights reserved.

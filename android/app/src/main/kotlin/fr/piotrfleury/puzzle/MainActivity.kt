@@ -1,4 +1,4 @@
-package fr.piotrfleury.puzzle
+package fr.xpeho.puzzle
 
 import io.flutter.embedding.android.FlutterActivity
 
