@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/puzzle_page.dart';
 
 class PuzzleApp extends StatelessWidget {
@@ -15,7 +16,7 @@ class PuzzleApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: xpehoGreen,
       ),
       home: BlocProvider(
         create: (_) => PuzzleCubit(),
