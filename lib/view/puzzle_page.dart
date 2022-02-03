@@ -7,6 +7,7 @@ import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/view/widgets/widgets.dart';
+import 'package:rive/rive.dart';
 import 'package:shake/shake.dart';
 
 /// Main page of the application.
@@ -298,11 +299,16 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .3,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image.asset('assets/images/mascotte.jpeg'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * .3,
+                    child: const Align(
+                      alignment: Alignment.bottomRight,
+                      child: RiveAnimation.asset(
+                        'assets/images/mascotte.riv',
+                      ),
+                    ),
                   ),
                 ),
               ],
