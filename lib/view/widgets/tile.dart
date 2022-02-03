@@ -34,15 +34,9 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
     _scale = Tween<double>(begin: 1, end: 0.9).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0, 1, curve: Curves.easeInOut),
+        curve: const Interval(0, 1),
       ),
     );
-
-    _scale.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.isAnimating;
-      }
-    });
   }
 
   @override
