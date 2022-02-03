@@ -1,14 +1,11 @@
 import 'dart:collection';
 import 'dart:math';
 
-import 'package:get_it/get_it.dart';
 import 'package:puzzle/models/models.dart';
-import 'package:puzzle/services/audio_service.dart';
 
 class Puzzle {
   final int complexity;
   final List<Tile> data;
-  AudioService audioService = GetIt.I.get<AudioService>();
 
   Puzzle({
     required this.complexity,
@@ -82,13 +79,11 @@ class Puzzle {
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
 
     if (emptyIndex > 0 && (emptyIndex + 1) % complexity == 0) {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
       return this;
     }
 
     final int valueIndex = emptyIndex + 1;
 
-    audioService.play("assets/sounds/Success.mp3", isLocal: true);
     return move(data[valueIndex].value);
   }
 
@@ -105,13 +100,11 @@ class Puzzle {
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
 
     if (emptyIndex == 0 || (emptyIndex + 1) % complexity == 1) {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
       return this;
     }
 
     final int valueIndex = emptyIndex - 1;
 
-    audioService.play("assets/sounds/Success.mp3", isLocal: true);
     return move(data[valueIndex].value);
   }
 
@@ -130,13 +123,11 @@ class Puzzle {
     final int emptyRow = emptyIndex ~/ complexity;
 
     if (emptyRow == complexity - 1) {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
       return this;
     }
 
     final int valueIndex = emptyIndex + complexity;
 
-    audioService.play("assets/sounds/Success.mp3", isLocal: true);
     return move(data[valueIndex].value);
   }
 
@@ -155,13 +146,11 @@ class Puzzle {
     final int emptyRow = emptyIndex ~/ complexity;
 
     if (emptyRow == 0) {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
       return this;
     }
 
     final int valueIndex = emptyIndex - complexity;
 
-    audioService.play("assets/sounds/Success.mp3", isLocal: true);
     return move(data[valueIndex].value);
   }
 
@@ -183,7 +172,6 @@ class Puzzle {
     // check if the tile is in the same row or column
     if (emptyRow == tileRow || emptyCol == tileCol) {
       final int indexGap = (emptyIndex - valueIndex).abs();
-      audioService.play("assets/sounds/Success.mp3", isLocal: true);
       if ([1, complexity].contains(indexGap)) {
         return move(value);
       } else {
