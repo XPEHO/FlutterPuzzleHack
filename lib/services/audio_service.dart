@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
+  final AudioCache _audioCache = AudioCache();
   double volume = 1.0;
 
   void play(
@@ -9,9 +11,13 @@ class AudioService {
     bool isLocal = false,
     bool shouldLoop = false,
   }) async {
-    await _audioPlayer.play(url, isLocal: isLocal, volume: volume);
-    if (shouldLoop) {
-      await _audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    if (kIsWeb) {
+      await _audioPlayer.play("assets/$url", isLocal: isLocal, volume: volume);
+      if (shouldLoop) {
+        await _audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+      }
+    } else {
+      await _audioCache.play(url, volume: volume);
     }
   }
 

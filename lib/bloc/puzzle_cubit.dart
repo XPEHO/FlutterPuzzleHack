@@ -21,16 +21,16 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
-    audioService.play("assets/sounds/Success.mp3", isLocal: true);
+    audioService.play("sounds/Success.mp3", isLocal: true);
     emitNewState(state.puzzle.trySwap(value));
   }
 
   /// try to swap empty tile and the one on the right
   void trySwapLeft() {
     if (state.puzzle.canSwapLeft()) {
-      audioService.play("assets/sounds/Success.mp3", isLocal: true);
+      audioService.play("sounds/Success.mp3", isLocal: true);
     } else {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
+      audioService.play("sounds/Error.mp3", isLocal: true);
     }
 
     emitNewState(state.puzzle.trySwapLeft());
@@ -39,9 +39,9 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   /// try to swap empty tile and the one on the left
   void trySwapRight() {
     if (state.puzzle.canSwapRight()) {
-      audioService.play("assets/sounds/Success.mp3", isLocal: true);
+      audioService.play("sounds/Success.mp3", isLocal: true);
     } else {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
+      audioService.play("sounds/Error.mp3", isLocal: true);
     }
 
     emitNewState(state.puzzle.trySwapRight());
@@ -50,9 +50,9 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   /// try to swap empty tile and the one above
   void trySwapUp() {
     if (state.puzzle.canSwapUp()) {
-      audioService.play("assets/sounds/Success.mp3", isLocal: true);
+      audioService.play("sounds/Success.mp3", isLocal: true);
     } else {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
+      audioService.play("sounds/Error.mp3", isLocal: true);
     }
 
     emitNewState(state.puzzle.trySwapUp());
@@ -61,9 +61,9 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   /// try to swap empty tile and the one below
   void trySwapDown() {
     if (state.puzzle.canSwapDown()) {
-      audioService.play("assets/sounds/Success.mp3", isLocal: true);
+      audioService.play("sounds/Success.mp3", isLocal: true);
     } else {
-      audioService.play("assets/sounds/Error.mp3", isLocal: true);
+      audioService.play("sounds/Error.mp3", isLocal: true);
     }
 
     emitNewState(state.puzzle.trySwapDown());
