@@ -1,8 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mockito/mockito.dart';
 import 'package:puzzle/models/models.dart';
+import 'package:puzzle/services/audio_service.dart';
+
+class AudioServiceMock extends Mock implements AudioService {}
 
 main() {
-  test('Puzzle factory', () {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final _audioService = AudioServiceMock();
+  GetIt.I.registerSingleton<AudioService>(_audioService);
+
+  test('Puzzle factory', () async {
     // GIVEN
     const complexity = 3;
 
@@ -31,6 +42,8 @@ main() {
   group('Puzzle moves', () {
     test('move left', () {
       // GIVEN
+      when(_audioService.play("assets/sounds/Succes.mp3")).thenReturn(null);
+      when(_audioService.play("assets/sounds/Error.mp3")).thenReturn(null);
       var puzzle = Puzzle.generate(3);
       puzzle.trySwapRight();
 
@@ -43,6 +56,8 @@ main() {
 
     test('move right', () {
       // GIVEN
+      when(_audioService.play("assets/sounds/Succes.mp3")).thenReturn(null);
+      when(_audioService.play("assets/sounds/Error.mp3")).thenReturn(null);
       var puzzle = Puzzle.generate(3);
       // first swipe left to be able to swipe right
       puzzle = puzzle.trySwapLeft();
@@ -56,6 +71,8 @@ main() {
 
     test('move up', () {
       // GIVEN
+      when(_audioService.play("assets/sounds/Succes.mp3")).thenReturn(null);
+      when(_audioService.play("assets/sounds/Error.mp3")).thenReturn(null);
       var puzzle = Puzzle.generate(3);
       puzzle.trySwapDown();
 
@@ -68,6 +85,8 @@ main() {
 
     test('move down', () {
       // GIVEN
+      when(_audioService.play("assets/sounds/Succes.mp3")).thenReturn(null);
+      when(_audioService.play("assets/sounds/Error.mp3")).thenReturn(null);
       var puzzle = Puzzle.generate(3);
       // first swipe up to be able to swipe down
       puzzle = puzzle.trySwapUp();

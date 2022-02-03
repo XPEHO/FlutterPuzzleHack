@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  audioplayers: ^0.20.1
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -34,8 +35,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   freezed_annotation: ^1.1.0
+  get_it: ^7.2.0
   image_picker: ^0.8.4+5
   intl: ^0.17.0
+  mockito: ^5.0.17
   shake: ^2.0.0
 
 dev_dependencies:
@@ -72,6 +75,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/sounds/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

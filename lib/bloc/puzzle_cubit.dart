@@ -1,12 +1,15 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/models/models.dart';
+import 'package:puzzle/services/audio_service.dart';
 
 class PuzzleCubit extends Cubit<PuzzleState> {
   PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)));
+  AudioService audioService = GetIt.I.get<AudioService>();
 
   void shuffle() {
     emitNewState(state.puzzle.shuffle());
@@ -18,26 +21,51 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
+    audioService.play("sounds/Success.mp3", isLocal: true);
     emitNewState(state.puzzle.trySwap(value));
   }
 
   /// try to swap empty tile and the one on the right
   void trySwapLeft() {
+    if (state.puzzle.canSwapLeft()) {
+      audioService.play("sounds/Success.mp3", isLocal: true);
+    } else {
+      audioService.play("sounds/Error.mp3", isLocal: true);
+    }
+
     emitNewState(state.puzzle.trySwapLeft());
   }
 
   /// try to swap empty tile and the one on the left
   void trySwapRight() {
+    if (state.puzzle.canSwapRight()) {
+      audioService.play("sounds/Success.mp3", isLocal: true);
+    } else {
+      audioService.play("sounds/Error.mp3", isLocal: true);
+    }
+
     emitNewState(state.puzzle.trySwapRight());
   }
 
   /// try to swap empty tile and the one above
   void trySwapUp() {
+    if (state.puzzle.canSwapUp()) {
+      audioService.play("sounds/Success.mp3", isLocal: true);
+    } else {
+      audioService.play("sounds/Error.mp3", isLocal: true);
+    }
+
     emitNewState(state.puzzle.trySwapUp());
   }
 
   /// try to swap empty tile and the one below
   void trySwapDown() {
+    if (state.puzzle.canSwapDown()) {
+      audioService.play("sounds/Success.mp3", isLocal: true);
+    } else {
+      audioService.play("sounds/Error.mp3", isLocal: true);
+    }
+
     emitNewState(state.puzzle.trySwapDown());
   }
 

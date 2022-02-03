@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/view/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -18,6 +20,7 @@ class PuzzlePage extends StatefulWidget {
 class _PuzzlePageState extends State<PuzzlePage> {
   late ShakeDetector detector;
   late FocusNode _puzzleFocusNode;
+  AudioService audioService = GetIt.I.get<AudioService>();
 
   @override
   void initState() {
@@ -89,6 +92,24 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       IconButton(
                         onPressed: _pickImage,
                         icon: const Icon(Icons.attach_file),
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.volume_down),
+                          Slider(
+                            activeColor: Colors.indigoAccent,
+                            min: 0.0,
+                            max: 1.0,
+                            onChanged: (newRating) async {
+                              setState(() {
+                                audioService.volume = newRating;
+                              });
+                              audioService.updateVolume(newRating);
+                            },
+                            value: audioService.volume,
+                          ),
+                          const Icon(Icons.volume_up),
+                        ],
                       ),
                     ],
                   ),
