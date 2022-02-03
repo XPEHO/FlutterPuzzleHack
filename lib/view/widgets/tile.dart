@@ -20,7 +20,7 @@ class Tile extends StatefulWidget {
 
 class _TileState extends State<Tile> with TickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _scale;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
       vsync: this,
     );
 
-    _scale = Tween<double>(begin: 1, end: 0.9).animate(
+    _animation = Tween<double>(begin: 1, end: 0.9).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0, 1),
@@ -54,7 +54,7 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
       onEnter: (_) => _controller.forward(),
       onExit: (_) => _controller.reverse(),
       child: ScaleTransition(
-        scale: _scale,
+        scale: _animation,
         child: GestureDetector(
           onTap: () {
             _controller.reset();
