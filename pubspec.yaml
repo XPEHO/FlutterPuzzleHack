@@ -35,6 +35,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   freezed_annotation: ^1.1.0
+  get_it: ^7.2.0
   image_picker: ^0.8.4+5
   intl: ^0.17.0
   shake: ^2.0.0
@@ -75,7 +76,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/musics/
+    - assets/sounds/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

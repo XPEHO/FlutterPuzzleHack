@@ -41,24 +41,24 @@ class AudioService {
 
   String getPlatformSound() {
     if (kIsWeb) {
-      return "assets/musics/Error.mp3";
+      return "assets/sounds/Son_1.mp3";
     }
 
     switch (Platform.operatingSystem) {
       case "android":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       case "fuchsia":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       case "linux":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       case "macos":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       case "windows":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       case "ios":
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
       default:
-        return "assets/musics/Error.mp3";
+        return "assets/sounds/Son_1.mp3";
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/audio_service.dart';
@@ -20,7 +21,7 @@ class PuzzlePage extends StatefulWidget {
 class _PuzzlePageState extends State<PuzzlePage> {
   late ShakeDetector detector;
   late FocusNode _puzzleFocusNode;
-  AudioService audioService = AudioService();
+  AudioService audioService = GetIt.I.get<AudioService>();
 
   @override
   void initState() {
@@ -46,7 +47,6 @@ class _PuzzlePageState extends State<PuzzlePage> {
   @override
   void dispose() {
     detector.stopListening();
-    audioService.dispose();
     super.dispose();
   }
 
@@ -138,10 +138,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
     BuildContext context,
     RawKeyEvent event,
   ) {
-    final String sound = audioService.getPlatformSound();
-
     if (event.isKeyPressed(event.logicalKey)) {
-      audioService.play(sound, isLocal: true);
       if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
         context.read<PuzzleCubit>().trySwapLeft();
         return KeyEventResult.handled;
