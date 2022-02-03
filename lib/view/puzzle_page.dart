@@ -52,77 +52,70 @@ class _PuzzlePageState extends State<PuzzlePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerSignal: (event) {
-        if (event is PointerScrollEvent) {
-          _handleScrollEvent(event);
-        }
-      },
-      child: BlocBuilder<PuzzleCubit, PuzzleState>(
-        builder: (context, state) => Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Focus(
-                      onKey: (_, event) => _onKeyEvent(
-                        context,
-                        event,
-                      ),
-                      autofocus: true,
-                      canRequestFocus: true,
-                      focusNode: _puzzleFocusNode,
-                      child: Puzzle(
-                        size: state.complexity,
-                        data: state.data,
-                        onTileTapped: (value) {
-                          _trySwap(context, value);
-                          _puzzleFocusNode.requestFocus();
-                        },
-                      ),
+    return BlocBuilder<PuzzleCubit, PuzzleState>(
+      builder: (context, state) => Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Focus(
+                    onKey: (_, event) => _onKeyEvent(
+                      context,
+                      event,
+                    ),
+                    autofocus: true,
+                    canRequestFocus: true,
+                    focusNode: _puzzleFocusNode,
+                    child: Puzzle(
+                      size: state.complexity,
+                      data: state.data,
+                      onTileTapped: (value) {
+                        _trySwap(context, value);
+                        _puzzleFocusNode.requestFocus();
+                      },
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () => _shuffle(context),
-                          icon: const Icon(Icons.shuffle),
-                        ),
-                        const SizedBox(height: 16),
-                        IconButton(
-                          onPressed: _pickImage,
-                          icon: const Icon(Icons.attach_file),
-                        ),
-                        Row(
-                          children: [
-                            const Icon(Icons.volume_down),
-                            Slider(
-                              activeColor: Colors.indigoAccent,
-                              min: 0.0,
-                              max: 1.0,
-                              onChanged: (newRating) async {
-                                setState(() {
-                                  audioService.volume = newRating;
-                                });
-                                audioService.updateVolume(newRating);
-                              },
-                              value: audioService.volume,
-                            ),
-                            const Icon(Icons.volume_up),
-                          ],
-                        ),
-                      ],
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () => _shuffle(context),
+                        icon: const Icon(Icons.shuffle),
+                      ),
+                      const SizedBox(height: 16),
+                      IconButton(
+                        onPressed: _pickImage,
+                        icon: const Icon(Icons.attach_file),
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.volume_down),
+                          Slider(
+                            activeColor: Colors.indigoAccent,
+                            min: 0.0,
+                            max: 1.0,
+                            onChanged: (newRating) async {
+                              setState(() {
+                                audioService.volume = newRating;
+                              });
+                              audioService.updateVolume(newRating);
+                            },
+                            value: audioService.volume,
+                          ),
+                          const Icon(Icons.volume_up),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -209,30 +202,6 @@ class _PuzzlePageState extends State<PuzzlePage> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       context.read<PuzzleCubit>().loadUiImage(pickedFile);
-    }
-  }
-
-  void _handleScrollEvent(PointerScrollEvent event) {
-    if (event.scrollDelta.direction > 0) {
-      if (audioService.volume <= 0.9) {
-        setState(() {
-          audioService.updateVolume(audioService.volume + 0.1);
-        });
-      } else {
-        setState(() {
-          audioService.updateVolume(1.0);
-        });
-      }
-    } else {
-      if (audioService.volume >= 0.1) {
-        setState(() {
-          audioService.updateVolume(audioService.volume - 0.1);
-        });
-      } else {
-        setState(() {
-          audioService.updateVolume(0.0);
-        });
-      }
     }
   }
 }

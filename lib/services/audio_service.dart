@@ -38,27 +38,4 @@ class AudioService {
     await _audioPlayer.stop();
     await _audioPlayer.dispose();
   }
-
-  String getPlatformSound() {
-    if (kIsWeb) {
-      return "assets/sounds/Son_1.mp3";
-    }
-
-    switch (Platform.operatingSystem) {
-      case "android":
-        return "assets/sounds/Son_1.mp3";
-      case "fuchsia":
-        return "assets/sounds/Son_1.mp3";
-      case "linux":
-        return "assets/sounds/Son_1.mp3";
-      case "macos":
-        return "assets/sounds/Son_1.mp3";
-      case "windows":
-        return "assets/sounds/Son_1.mp3";
-      case "ios":
-        return "assets/sounds/Son_1.mp3";
-      default:
-        return "assets/sounds/Son_1.mp3";
-    }
-  }
 }
