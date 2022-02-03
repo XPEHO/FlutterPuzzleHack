@@ -20,5 +20,9 @@
     "solve": "Solve",
     "@solve": {
       "description": "Solve button label"
+    },
+    "team_name": "Xpeho mobile",
+    "@team_name": {
+      "description": "Team name"
     }
 }

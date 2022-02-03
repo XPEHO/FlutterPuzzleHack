@@ -2,5 +2,6 @@
     "app_name": "Puzzle",
     "shuffle": "Mélanger",
     "complexity": "Complexité {complexityValue}",
-    "solve": "Résoudre"
+    "solve": "Résoudre",
+    "team_name": "Xpeho mobile"
 }

@@ -77,7 +77,7 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
             scale: _openingAnimation,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(8.0),
               ),
               width: 64.0,

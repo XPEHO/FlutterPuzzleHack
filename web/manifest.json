@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#1EB91E",
-    "theme_color": "#1EB91E",
+    "theme_color": "#B3D26B",
     "description": "Flutter Puzzle Hack by XPEHO.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
