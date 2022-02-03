@@ -21,7 +21,11 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
-    audioService.play("sounds/Success.mp3", isLocal: true);
+    if (state.puzzle.canSwap(value)) {
+      audioService.play("sounds/Success.mp3", isLocal: true);
+    } else {
+      audioService.play("sounds/Error.mp3", isLocal: true);
+    }
     emitNewState(state.puzzle.trySwap(value));
   }
 
