@@ -265,6 +265,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                                           audioService.volume = newRating;
                                         });
                                         audioService.updateVolume(newRating);
+                                        _puzzleFocusNode.requestFocus();
                                       },
                                       value: audioService.volume,
                                     ),
