@@ -27,13 +27,28 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 150),
       vsync: this,
     );
 
-    _scale = Tween<double>(begin: 1, end: 0.9).animate(CurvedAnimation(
+    _scale = Tween<double>(begin: 1, end: 0.9).animate(
+      CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0, 1)));
+        curve: const Interval(0, 1, curve: Curves.easeInOut),
+      ),
+    );
+
+    _scale.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.isAnimating;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,7 +62,10 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
       child: ScaleTransition(
         scale: _scale,
         child: GestureDetector(
-          onTap: () => widget.onTap(widget.tile.value),
+          onTap: () {
+            _controller.reset();
+            widget.onTap(widget.tile.value);
+          },
           child: Container(
             decoration: BoxDecoration(
               color: Colors.blueAccent,
