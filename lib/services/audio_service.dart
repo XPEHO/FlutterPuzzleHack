@@ -18,7 +18,9 @@ class AudioService {
     }
 
     if (kIsWeb) {
-      await _audioPlayer.play("assets/$url", isLocal: isLocal, volume: volume);
+      final String updatedUrl =
+          kDebugMode ? "assets/$url" : "assets/assets/$url";
+      await _audioPlayer.play(updatedUrl, isLocal: isLocal, volume: volume);
       if (shouldLoop) {
         await _audioPlayer.setReleaseMode(ReleaseMode.LOOP);
       }
