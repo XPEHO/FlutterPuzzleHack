@@ -43,5 +43,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs to access your photo library to save your high scores.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs to access your camera to play the game.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs to access your microphone to play the game.</string>
 </dict>
 </plist>
