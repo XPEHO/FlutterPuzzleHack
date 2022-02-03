@@ -3,9 +3,9 @@
     "short_name": "puzzle",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#1EB91E",
+    "theme_color": "#1EB91E",
+    "description": "Flutter Puzzle Hack by XPEHO.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
