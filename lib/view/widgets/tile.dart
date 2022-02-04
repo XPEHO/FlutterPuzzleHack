@@ -66,6 +66,7 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
     return MouseRegion(
       onEnter: (_) => _hoverAnimationController.forward(),
       onExit: (_) => _hoverAnimationController.reverse(),
+      cursor: SystemMouseCursors.click,
       child: ScaleTransition(
         scale: _hoverAnimation,
         child: GestureDetector(
