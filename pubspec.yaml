@@ -49,6 +49,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^1.1.1
   flutter_launcher_icons: "^0.9.2"
+  msix: ^2.8.15
 
 
 
@@ -106,3 +107,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+msix_config:
+  display_name: Xpeho mobile Puzzle
+  publisher_display_name: XpehoMobilePuzzle
+  identity_name: fr.xpeho.puzzle
+  msix_version: 1.0.0.0
+  logo_path: assets\images\icon_batman_pixel_with_background.png
+  capabilities: "picturesLibrary"

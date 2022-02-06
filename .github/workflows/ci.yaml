@@ -22,6 +22,7 @@ jobs:
       - name: build windows application
         run: |
           flutter build windows
+          flutter pub run msix:create
   other-builds:
     runs-on: macos-latest
     strategy:
