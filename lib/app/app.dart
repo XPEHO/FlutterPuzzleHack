@@ -25,7 +25,6 @@ class PuzzleApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: xpehoGreen,
           ),
-          title: 'Flutter puzzle',
         );
       },
     );
