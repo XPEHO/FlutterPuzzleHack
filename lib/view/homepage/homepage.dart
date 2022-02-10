@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
               PuzzlePage.route,
             );
           },
-          child: Text(
+          child: const Text(
             "Play",
           ),
         )
