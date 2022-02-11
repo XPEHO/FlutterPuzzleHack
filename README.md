@@ -28,3 +28,9 @@ $ flutter build macos --debug # or flutter run -d macos
 ```
 
 This commands will build the macOS app for x86_64 architecture and will run the app using Rosetta.
+
+## Windows Build
+
+In order to build this app for Windows you must previously install Visual Studio 2022.
+
+More details [here](https://docs.flutter.dev/desktop#additional-windows-requirements)

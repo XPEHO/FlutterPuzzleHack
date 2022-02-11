@@ -1,8 +1,11 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
@@ -143,10 +146,16 @@ class _PuzzlePageState extends State<PuzzlePage> {
   }
 
   Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      context.read<PuzzleCubit>().loadUiImage(pickedFile);
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      if (kIsWeb) {
+        context.read<PuzzleCubit>().loadUiImage(result.files.single.bytes);
+      } else {
+        final String path = result.files.single.path ?? '';
+        final bytes = await File(path).readAsBytes();
+        context.read<PuzzleCubit>().loadUiImage(bytes);
+      }
     }
   }
 
