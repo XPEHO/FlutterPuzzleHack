@@ -49,3 +49,6 @@ coverage/
 
 # Firebase
 /lib/firebase_options.dart
+
+#fvm
+.fvm
