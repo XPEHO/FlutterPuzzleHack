@@ -4,5 +4,6 @@
     "complexity": "Complexité {complexityValue}",
     "solve": "Résoudre",
     "team_name": "Xpeho mobile",
-    "moves": "Mouvements {count}"
+    "moves": "Mouvements {count}",
+    "play": "Jouer"
 }

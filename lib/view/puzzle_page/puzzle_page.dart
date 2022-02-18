@@ -10,12 +10,13 @@ import 'package:get_it/get_it.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
-import 'package:puzzle/view/widgets/widgets.dart';
+import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
-/// Main page of the application.
 /// Contains the puzzle and the controls.
 class PuzzlePage extends StatefulWidget {
+  static const String route = "/puzzlePage";
+
   const PuzzlePage({Key? key}) : super(key: key);
 
   @override

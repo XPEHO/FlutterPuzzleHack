@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle/models/models.dart' as model;
-import 'package:puzzle/view/widgets/widgets.dart';
+import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 
 class Tile extends StatefulWidget {
   final model.Tile tile;
