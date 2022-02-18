@@ -103,8 +103,11 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Center(
                 child: MenuButton(
-                  targetRoute: LeaderboardPage.route,
+                  redirection: () => GoRouter.of(context).go(
+                    LeaderboardPage.route,
+                  ),
                   text: "Leaderboard",
+                  isClickable: true,
                 ),
               ),
             ),

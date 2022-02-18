@@ -8,13 +8,12 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shake/shake.dart';
-
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
+import 'package:shake/shake.dart';
 
 /// Contains the puzzle and the controls.
 class PuzzlePage extends StatefulWidget {
