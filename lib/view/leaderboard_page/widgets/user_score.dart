@@ -1,4 +1,3 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 
@@ -30,9 +29,9 @@ class _UserScoreState extends State<UserScore> {
                 cursorWidth: 1,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.nickname_hint,
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  hintText: "Pseudo...",
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Icon(Icons.search),
                   ),
                   contentPadding: const EdgeInsets.all(12.0),
@@ -52,28 +51,26 @@ class _UserScoreState extends State<UserScore> {
                   fontSize: 16,
                   color: Colors.grey[600]!,
                 ),
-                onFieldSubmitted: (nickname) async {
+                onFieldSubmitted: (pseudo) async {
                   if (formKey.currentState!.validate()) {
                     setState(() {
                       _futureFetchUserScore =
-                          LeaderboardProvider().fetchUserScore(nickname);
+                          LeaderboardProvider().fetchUserScore(pseudo);
                     });
                   }
                 },
-                validator: (nickname) => _validateValue(nickname!),
+                validator: (pseudo) => _validateValue(pseudo!),
               ),
             );
           } else {
-            return Text(
-              AppLocalizations.of(context)!.your_score(snapshot.data!),
-            );
+            return Text("Your score: ${snapshot.data}");
           }
         });
   }
 
-  String? _validateValue(String nickname) {
-    if (nickname.isEmpty) {
-      return AppLocalizations.of(context)!.empty_nickname_error;
+  String? _validateValue(String pseudo) {
+    if (pseudo.isEmpty) {
+      return "Pseudo can't be null";
     }
     return null;
   }

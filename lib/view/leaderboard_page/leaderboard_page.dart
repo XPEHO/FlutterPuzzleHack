@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/view/leaderboard_page/widgets/scores_list.dart';
 import 'package:puzzle/view/leaderboard_page/widgets/user_score.dart';
@@ -34,7 +35,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Center(
                       child: UserScore(),
                     ),
