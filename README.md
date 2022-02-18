@@ -1,36 +1,62 @@
 # Xpeho FlutterPuzzleHack
 
-This project contains the FlutterPuzzleHack Xpeho participation sources
+![Photo Booth Header][logo]
 
-## Getting Started With Flutter
+A slide puzzle built for [Flutter Challenge](https://flutterhack.devpost.com/).
 
-This project is a starting point for a Flutter application.
+*Built by [XPEHO][xpeho_link].*
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+---
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Getting Started 🚀
 
-## macOS arm64 Build (M1 chip)
+To run the project either use the launch configuration in VSCode/Android Studio/IntelliJ or use the following command:
 
-If you use a MacOS machine, you can build the app for arm64 using the following command:
-
-```bash
-$ sudo arch -x86_64 gem install ffi
-$ cd macos # or ios
-$ arch -x86_64 pod install
-$ cd ..
-$ flutter build macos --debug # or flutter run -d macos
+```sh
+$ flutter run -d chrome
 ```
 
-This commands will build the macOS app for x86_64 architecture and will run the app using Rosetta.
+---
 
-## Windows Build
 
-In order to build this app for Windows you must previously install Visual Studio 2022.
+## Working with Translations 🌐
 
-More details [here](https://docs.flutter.dev/desktop#additional-windows-requirements)
+This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+
+### Adding Strings
+
+To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
+
+```arb
+{
+    "team_name": "Xpeho mobile",
+    "@team_name": {
+      "description": "Team name"
+    }
+}
+```
+
+---
+
+## XPEHO FlutterPuzzleHack Cross Platform ⌚️💻📱
+
+Available platforms : 
+
+- [Web][pwa_link]
+- IOS 
+- Android
+- MacOS
+- Windows 
+
+Coming soon Linux and ... WatchOS
+
+
+---
+
+
+[logo]: assets/images/header_readme.png
+[xpeho_link]: https://xpeho.fr/
+[flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
+[internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+[pwa_link]: https://xpeho-flutter-puzzle-hack.web.app/

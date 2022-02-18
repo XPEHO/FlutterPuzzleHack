@@ -1,3 +1,6 @@
+/// Class Tile
+/// Differents position X & Y
+/// The value for different tile
 class Tile {
   int targetX;
   int targetY;

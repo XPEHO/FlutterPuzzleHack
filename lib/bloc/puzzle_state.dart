@@ -5,6 +5,7 @@ import 'package:puzzle/models/models.dart';
 
 part 'puzzle_state.freezed.dart';
 
+///State management for the puzzle
 @freezed
 class PuzzleState with _$PuzzleState {
   factory PuzzleState(

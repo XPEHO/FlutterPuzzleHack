@@ -1,5 +1,8 @@
 import 'package:puzzle/models/models.dart';
 
+/// Class Puzzle
+/// Complexity management
+/// List Tile management
 class Puzzle {
   final int complexity;
   final List<Tile> data;
@@ -9,6 +12,7 @@ class Puzzle {
     required this.data,
   });
 
+  /// Generate value for the puzzle
   factory Puzzle.generate(int complexity) {
     final data = List<Tile>.generate(complexity * complexity, (index) {
       var value = index + 1;
@@ -64,6 +68,7 @@ class Puzzle {
     );
   }
 
+  /// Check if move left is possible
   bool canSwapLeft() {
     final int emptyIndex =
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
@@ -71,6 +76,7 @@ class Puzzle {
     return (emptyIndex == 0 || (emptyIndex + 1) % complexity != 0);
   }
 
+  /// try to swap empty tile and the one on the right
   Puzzle trySwapLeft() {
     final int emptyIndex =
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
@@ -84,6 +90,7 @@ class Puzzle {
     return move(data[valueIndex].value);
   }
 
+  /// Check if move right is possible
   bool canSwapRight() {
     final int emptyIndex =
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
@@ -105,6 +112,7 @@ class Puzzle {
     return move(data[valueIndex].value);
   }
 
+  /// Check if move in up is possible
   bool canSwapUp() {
     final int emptyIndex =
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
@@ -128,6 +136,7 @@ class Puzzle {
     return move(data[valueIndex].value);
   }
 
+  /// Check if move in down is possible
   bool canSwapDown() {
     final int emptyIndex =
         data.indexOf(data.firstWhere((tile) => tile.value == 0));
@@ -151,6 +160,7 @@ class Puzzle {
     return move(data[valueIndex].value);
   }
 
+  /// Check if move is possible
   bool canSwap(int value) {
     final int emptyIndex = values.indexOf(0);
 
