@@ -1,6 +1,3 @@
-import 'dart:collection';
-import 'dart:math';
-
 import 'package:puzzle/models/models.dart';
 
 class Puzzle {
@@ -237,60 +234,7 @@ class Puzzle {
   }
 
   Puzzle shuffle() {
-    bool solvable = true;
-    var shuffled = Puzzle(
-      complexity: complexity,
-      data: List<Tile>.from(data),
-    );
-    List<Puzzle> history = [shuffled];
-    while (solvable) {
-      var _moves = shuffled._possibleMoves();
-      _moves.removeWhere((element) => history.contains(element));
-      var _shuffled = _moves[Random().nextInt(_moves.length)];
-      final solved = solve(_shuffled);
-      solvable = solved.error == 0;
-      if (solvable) {
-        shuffled = _shuffled;
-        history.add(shuffled);
-      }
-    }
-    return shuffled;
-  }
-
-  List<Puzzle> _possibleMoves() => [
-        if (canSwapLeft()) trySwapLeft(),
-        if (canSwapRight()) trySwapRight(),
-        if (canSwapUp()) trySwapUp(),
-        if (canSwapDown()) trySwapDown(),
-      ];
-
-  /// Solve the puzzle
-  /// To know if the puzzle is solved, we compute the "error" value.
-  /// The error value is the sum of the errors of each tile.
-  /// The error of a tile is the sum of the number of rows and columns between
-  ///   current position and the goal position.
-  /// The puzzle is 'solved' if the error is 0.
-  static Puzzle solve(Puzzle puzzle) {
-    Queue<Puzzle> unvisited = Queue.from([puzzle]);
-    List<Puzzle> visited = [];
-    Puzzle currentPuzzle = puzzle;
-
-    while (unvisited.isNotEmpty &&
-        currentPuzzle.error > 0 &&
-        visited.length < 100) {
-      currentPuzzle = unvisited.removeFirst();
-
-      var moves = currentPuzzle._possibleMoves();
-
-      moves.removeWhere((move) => visited.contains(move));
-      moves.sort((a, b) => b.error.compareTo(a.error));
-      for (var move in moves) {
-        unvisited.addFirst(move);
-      }
-      visited.add(currentPuzzle);
-    }
-    // the puzzle is solved
-    return currentPuzzle;
+    return Puzzle(complexity: complexity, data: [...data..shuffle()]);
   }
 
   List<int> get values => data.map((tile) => tile.value).toList();

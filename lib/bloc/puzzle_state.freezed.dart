@@ -18,10 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PuzzleStateTearOff {
   const _$PuzzleStateTearOff();
 
-  _PuzzleState call(Puzzle puzzle, {ui.Image? image}) {
+  _PuzzleState call(Puzzle puzzle, {ui.Image? image, int moves = 0}) {
     return _PuzzleState(
       puzzle,
       image: image,
+      moves: moves,
     );
   }
 }
@@ -33,6 +34,7 @@ const $PuzzleState = _$PuzzleStateTearOff();
 mixin _$PuzzleState {
   Puzzle get puzzle => throw _privateConstructorUsedError;
   ui.Image? get image => throw _privateConstructorUsedError;
+  int get moves => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PuzzleStateCopyWith<PuzzleState> get copyWith =>
@@ -44,7 +46,7 @@ abstract class $PuzzleStateCopyWith<$Res> {
   factory $PuzzleStateCopyWith(
           PuzzleState value, $Res Function(PuzzleState) then) =
       _$PuzzleStateCopyWithImpl<$Res>;
-  $Res call({Puzzle puzzle, ui.Image? image});
+  $Res call({Puzzle puzzle, ui.Image? image, int moves});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$PuzzleStateCopyWithImpl<$Res> implements $PuzzleStateCopyWith<$Res> {
   $Res call({
     Object? puzzle = freezed,
     Object? image = freezed,
+    Object? moves = freezed,
   }) {
     return _then(_value.copyWith(
       puzzle: puzzle == freezed
@@ -69,6 +72,10 @@ class _$PuzzleStateCopyWithImpl<$Res> implements $PuzzleStateCopyWith<$Res> {
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as ui.Image?,
+      moves: moves == freezed
+          ? _value.moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -80,7 +87,7 @@ abstract class _$PuzzleStateCopyWith<$Res>
           _PuzzleState value, $Res Function(_PuzzleState) then) =
       __$PuzzleStateCopyWithImpl<$Res>;
   @override
-  $Res call({Puzzle puzzle, ui.Image? image});
+  $Res call({Puzzle puzzle, ui.Image? image, int moves});
 }
 
 /// @nodoc
@@ -97,6 +104,7 @@ class __$PuzzleStateCopyWithImpl<$Res> extends _$PuzzleStateCopyWithImpl<$Res>
   $Res call({
     Object? puzzle = freezed,
     Object? image = freezed,
+    Object? moves = freezed,
   }) {
     return _then(_PuzzleState(
       puzzle == freezed
@@ -107,6 +115,10 @@ class __$PuzzleStateCopyWithImpl<$Res> extends _$PuzzleStateCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as ui.Image?,
+      moves: moves == freezed
+          ? _value.moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -114,16 +126,19 @@ class __$PuzzleStateCopyWithImpl<$Res> extends _$PuzzleStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PuzzleState implements _PuzzleState {
-  _$_PuzzleState(this.puzzle, {this.image});
+  _$_PuzzleState(this.puzzle, {this.image, this.moves = 0});
 
   @override
   final Puzzle puzzle;
   @override
   final ui.Image? image;
+  @JsonKey()
+  @override
+  final int moves;
 
   @override
   String toString() {
-    return 'PuzzleState(puzzle: $puzzle, image: $image)';
+    return 'PuzzleState(puzzle: $puzzle, image: $image, moves: $moves)';
   }
 
   @override
@@ -132,14 +147,16 @@ class _$_PuzzleState implements _PuzzleState {
         (other.runtimeType == runtimeType &&
             other is _PuzzleState &&
             const DeepCollectionEquality().equals(other.puzzle, puzzle) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.moves, moves));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(puzzle),
-      const DeepCollectionEquality().hash(image));
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(moves));
 
   @JsonKey(ignore: true)
   @override
@@ -148,12 +165,15 @@ class _$_PuzzleState implements _PuzzleState {
 }
 
 abstract class _PuzzleState implements PuzzleState {
-  factory _PuzzleState(Puzzle puzzle, {ui.Image? image}) = _$_PuzzleState;
+  factory _PuzzleState(Puzzle puzzle, {ui.Image? image, int moves}) =
+      _$_PuzzleState;
 
   @override
   Puzzle get puzzle;
   @override
   ui.Image? get image;
+  @override
+  int get moves;
   @override
   @JsonKey(ignore: true)
   _$PuzzleStateCopyWith<_PuzzleState> get copyWith =>
