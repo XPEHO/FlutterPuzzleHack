@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Center(
                   child: Text(
-                    "XPEHO MOBILE",
+                    AppLocalizations.of(context)!.team_name,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 48,

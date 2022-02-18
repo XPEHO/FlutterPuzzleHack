@@ -33,7 +33,8 @@
           "description": "the number of moves",
           "example": "4"
         }
-      },
+      }
+    },
     "play": "Play",
     "@play": {
       "description": "Play button label"
