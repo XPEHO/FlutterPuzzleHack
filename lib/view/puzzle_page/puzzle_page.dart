@@ -49,6 +49,11 @@ class _PuzzlePageState extends State<PuzzlePage> {
     return BlocBuilder<PuzzleCubit, PuzzleState>(
       builder: (context, state) => OrientationBuilder(
         builder: (context, orientation) {
+          if (state.puzzle.isSolved && state.moves > 0) {
+            WidgetsBinding.instance?.addPostFrameCallback(
+              (timeStamp) => _showVictoryScreen(context),
+            );
+          }
           if (orientation == Orientation.portrait) {
             return _buildPortrait(context, state);
           } else {
@@ -314,5 +319,16 @@ class _PuzzlePageState extends State<PuzzlePage> {
         ],
       ),
     );
+  }
+
+  /// Show a dialog to the user to celebrate victory
+  Future<void> _showVictoryScreen(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+        content: Victory(),
+      ),
+    );
+    _reset(context);
   }
 }

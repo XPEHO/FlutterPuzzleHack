@@ -38,5 +38,13 @@
     "play": "Play",
     "@play": {
       "description": "Play button label"
+    },
+    "victory_title": "You win !",
+    "@victory_title": {
+      "description": "Victory title"
+    },
+    "restart_btn": "Restart",
+    "@restart_btn": {
+      "description": "Restart button label"
     }
 }
