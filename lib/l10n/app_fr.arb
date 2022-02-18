@@ -5,5 +5,7 @@
     "solve": "Résoudre",
     "team_name": "Xpeho mobile",
     "moves": "Mouvements {count}",
-    "play": "Jouer"
+    "play": "Jouer",
+    "victory_title": "Victoire !",
+    "restart_btn": "Recommencer"
 }

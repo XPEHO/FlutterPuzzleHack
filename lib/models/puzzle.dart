@@ -40,6 +40,9 @@ class Puzzle {
       .map((tile) => tile.currentError(getXof(tile), getYof(tile)))
       .reduce((a, b) => a + b);
 
+  /// Puzzle is solved if all tiles are in their target positions
+  bool get isSolved => error == 0;
+
   /// perform a swap between two tiles
   Puzzle move(int value) {
     final newData = List<Tile>.from(data);
