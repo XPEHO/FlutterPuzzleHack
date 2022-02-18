@@ -3,5 +3,6 @@
     "shuffle": "Mélanger",
     "complexity": "Complexité {complexityValue}",
     "solve": "Résoudre",
-    "team_name": "Xpeho mobile"
+    "team_name": "Xpeho mobile",
+    "moves": "Mouvements {count}"
 }

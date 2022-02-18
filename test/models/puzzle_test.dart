@@ -327,21 +327,6 @@ main() {
     });
   });
 
-  // Group solved
-  group('Solved', () {
-    test('Generated puzzle should be solvable', () {
-      // GIVEN
-      var puzzle = Puzzle.generate(9);
-      puzzle = puzzle.shuffle();
-
-      // WHEN
-      var solved = Puzzle.solve(puzzle);
-
-      // THEN
-      expect(solved.error, 0);
-    });
-  });
-
   group('equal operator', () {
     test('equal true', () {
       // GIVEN

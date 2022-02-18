@@ -24,5 +24,15 @@
     "team_name": "Xpeho mobile",
     "@team_name": {
       "description": "Team name"
+    },
+    "moves": "Moves {count}",
+    "@moves": {
+      "description": "Moves label",
+      "placeholders": {
+        "count": {
+          "description": "the number of moves",
+          "example": "4"
+        }
+      }
     }
 }

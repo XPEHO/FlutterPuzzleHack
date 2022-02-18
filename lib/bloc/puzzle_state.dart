@@ -7,7 +7,11 @@ part 'puzzle_state.freezed.dart';
 
 @freezed
 class PuzzleState with _$PuzzleState {
-  factory PuzzleState(Puzzle puzzle, {ui.Image? image}) = _PuzzleState;
+  factory PuzzleState(
+    Puzzle puzzle, {
+    ui.Image? image,
+    @Default(0) int moves,
+  }) = _PuzzleState;
 }
 
 extension PuzzleStateExtension on PuzzleState {

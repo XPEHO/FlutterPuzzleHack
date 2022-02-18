@@ -12,11 +12,7 @@ class PuzzleCubit extends Cubit<PuzzleState> {
   AudioService audioService = GetIt.I.get<AudioService>();
 
   void shuffle() {
-    emitNewState(state.puzzle.shuffle());
-  }
-
-  void solve() {
-    emitNewState(Puzzle.solve(state.puzzle));
+    emitNewState(state.puzzle.shuffle(), 0);
   }
 
   /// try to swap the tile with the empty tile
@@ -26,70 +22,66 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     } else {
       audioService.play("sounds/Error.mp3", isLocal: true);
     }
-    emitNewState(state.puzzle.trySwap(value));
+    emitNewState(state.puzzle.trySwap(value), state.moves + 1);
   }
 
   /// try to swap empty tile and the one on the right
   void trySwapLeft() {
     if (state.puzzle.canSwapLeft()) {
       audioService.play("sounds/Success.mp3", isLocal: true);
+      emitNewState(state.puzzle.trySwapLeft(), state.moves + 1);
     } else {
       audioService.play("sounds/Error.mp3", isLocal: true);
     }
-
-    emitNewState(state.puzzle.trySwapLeft());
   }
 
   /// try to swap empty tile and the one on the left
   void trySwapRight() {
     if (state.puzzle.canSwapRight()) {
       audioService.play("sounds/Success.mp3", isLocal: true);
+      emitNewState(state.puzzle.trySwapRight(), state.moves + 1);
     } else {
       audioService.play("sounds/Error.mp3", isLocal: true);
     }
-
-    emitNewState(state.puzzle.trySwapRight());
   }
 
   /// try to swap empty tile and the one above
   void trySwapUp() {
     if (state.puzzle.canSwapUp()) {
       audioService.play("sounds/Success.mp3", isLocal: true);
+      emitNewState(state.puzzle.trySwapUp(), state.moves + 1);
     } else {
       audioService.play("sounds/Error.mp3", isLocal: true);
     }
-
-    emitNewState(state.puzzle.trySwapUp());
   }
 
   /// try to swap empty tile and the one below
   void trySwapDown() {
     if (state.puzzle.canSwapDown()) {
       audioService.play("sounds/Success.mp3", isLocal: true);
+      emitNewState(state.puzzle.trySwapDown(), state.moves + 1);
     } else {
       audioService.play("sounds/Error.mp3", isLocal: true);
     }
-
-    emitNewState(state.puzzle.trySwapDown());
   }
 
   /// reset the puzzle
   void reset() {
-    emitNewState(Puzzle.generate(state.puzzle.complexity));
+    emitNewState(Puzzle.generate(state.puzzle.complexity), 0);
   }
 
   /// increase complexity of the puzzle
   void increaseComplexity() {
-    emitNewState(Puzzle.generate(state.puzzle.complexity + 1));
+    emitNewState(Puzzle.generate(state.puzzle.complexity + 1), 0);
   }
 
   /// decrease complexity of the puzzle
   void decreaseComplexity() {
-    emitNewState(Puzzle.generate(state.puzzle.complexity - 1));
+    emitNewState(Puzzle.generate(state.puzzle.complexity - 1), 0);
   }
 
-  void emitNewState(Puzzle newPuzzle) {
-    emit(state.copyWith(puzzle: newPuzzle));
+  void emitNewState(Puzzle newPuzzle, int moves) {
+    emit(state.copyWith(puzzle: newPuzzle, moves: moves));
   }
 
   Future<void> loadUiImage(Uint8List? bytes) async {
