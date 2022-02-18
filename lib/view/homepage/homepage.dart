@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: Text(
                     AppLocalizations.of(context)!.team_name,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 48,
