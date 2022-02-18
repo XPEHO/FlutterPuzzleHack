@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puzzle/dao/leaderboard_dao.dart';
 
 class LeaderboardService {
+  String pseudo = "";
+
   Future<int> fetchUserScore(String pseudo) async {
     DocumentSnapshot userDocument =
         await LeaderboardDao().fetchUserScore(pseudo);
@@ -26,5 +28,9 @@ class LeaderboardService {
       }
       return scores;
     }
+  }
+
+  void updateUserScore(int score) {
+    LeaderboardDao().updateUserScore(pseudo, score);
   }
 }
