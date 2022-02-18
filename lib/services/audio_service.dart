@@ -3,6 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:volume_controller/volume_controller.dart';
 
+/// Class AudioService for audio player in the app
+/// Cache management
+/// Volume management
+/// Audio player management
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
   final AudioCache _audioCache = AudioCache();

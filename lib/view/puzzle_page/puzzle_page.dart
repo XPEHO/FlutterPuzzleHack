@@ -32,6 +32,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
   void initState() {
     super.initState();
     _puzzleFocusNode = FocusNode();
+    //Shake animations : start shuffle function
     detector = ShakeDetector.autoStart(onPhoneShake: () {
       _shuffle(context);
     });
@@ -113,16 +114,19 @@ class _PuzzlePageState extends State<PuzzlePage> {
     _puzzleFocusNode.requestFocus();
   }
 
+  /// Up complexity of puzzle : Number of tile
   void _increaseComplexity(BuildContext context) {
     context.read<PuzzleCubit>().increaseComplexity();
     _puzzleFocusNode.requestFocus();
   }
 
+  /// Decrease complexity of puzzle : Number of tile
   void _decreaseComplexity(BuildContext context) {
     context.read<PuzzleCubit>().decreaseComplexity();
     _puzzleFocusNode.requestFocus();
   }
 
+  /// Load picture for the puzzle
   Future<void> _pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -137,6 +141,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
     }
   }
 
+  /// Build the portrait mode
   Widget _buildPortrait(BuildContext context, PuzzleState state) {
     return Scaffold(
       bottomNavigationBar: Padding(
@@ -203,6 +208,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
     );
   }
 
+  /// Build the landscape mode
   Widget _buildLandscape(BuildContext context, PuzzleState state) {
     return Scaffold(
       body: Column(
