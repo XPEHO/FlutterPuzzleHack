@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/models/models.dart' as model;
-import 'package:puzzle/view/widgets/widgets.dart';
+import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 
 typedef OnTileTapped = void Function(int tileValue);
 
