@@ -21,30 +21,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.team_name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 48,
-                      fontFamily: "QueenOfTheModernAge",
-                    ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Text(
+                  AppLocalizations.of(context)!.team_name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 48,
+                    fontFamily: "QueenOfTheModernAge",
                   ),
                 ),
               ),
-              Expanded(
-                child: Center(
-                  child: Column(
+            ),
+            Expanded(
+              child: Center(
+                child: Column(
                     children: [
                       if (isFirebaseUsable())
                         TextFormField(
@@ -76,13 +75,11 @@ class _HomePageState extends State<HomePage> {
                             });
                           },
                         ),
-                      const SizedBox(height: 16),
-                      MenuButton(
-                        redirection: () {
+                      const SizedBox(height: 16),MenuButton(
+                  redirection: () {
                           LeaderboardProvider().updateUserNickname(nickname);
-                          GoRouter.of(context).go(
-                            PuzzlePage.route,
-                          );
+                          GoRouter.of(context).go( PuzzlePage.route,
+                  );
                         },
                         text: AppLocalizations.of(context)!.play,
                         isClickable: nickname.isNotEmpty,
@@ -100,11 +97,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       text: AppLocalizations.of(context)!.leaderboard_btn,
                       isClickable: true,
-                    ),
-                  ),
                 ),
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

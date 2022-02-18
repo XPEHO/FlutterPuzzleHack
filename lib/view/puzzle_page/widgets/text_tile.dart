@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextTile extends StatelessWidget {
   final String text;
@@ -13,7 +14,7 @@ class TextTile extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: const TextStyle(
+        style: GoogleFonts.lato(fontStyle: FontStyle.italic).copyWith(
           fontSize: 40,
           fontWeight: FontWeight.bold,
           color: Colors.white,
