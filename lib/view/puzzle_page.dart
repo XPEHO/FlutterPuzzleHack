@@ -31,19 +31,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
     super.initState();
     _puzzleFocusNode = FocusNode();
     detector = ShakeDetector.autoStart(onPhoneShake: () {
-      if (MediaQuery.of(context).orientation == Orientation.portrait) {
-        // is portrait
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight,
-        ]);
-      } else {
-        // is landscape
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitDown,
-          DeviceOrientation.portraitUp,
-        ]);
-      }
+      _shuffle(context);
     });
   }
 
