@@ -30,8 +30,8 @@ class _UserScoreState extends State<UserScore> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   hintText: "Pseudo...",
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Icon(Icons.search),
                   ),
                   contentPadding: const EdgeInsets.all(12.0),
