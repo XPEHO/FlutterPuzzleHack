@@ -75,20 +75,23 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
             _hoverAnimationController.reset();
             widget.onTap(widget.tile.value);
           },
-          child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(8.0),
+          child: ScaleTransition(
+            scale: _openingAnimation,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              width: 64.0,
+              child: widget.gotImage
+                  ? ImageTile(
+                      x: widget.tile.targetX,
+                      y: widget.tile.targetY,
+                    )
+                  : TextTile(
+                      text: '${widget.tile.value}',
+                    ),
             ),
-            width: 64.0,
-            child: widget.gotImage
-                ? ImageTile(
-                    x: widget.tile.targetX,
-                    y: widget.tile.targetY,
-                  )
-                : TextTile(
-                    text: '${widget.tile.value}',
-                  ),
           ),
         ),
       ),
