@@ -44,6 +44,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              Expanded(
+                child: Center(
+                  child: MenuButton(
+                    targetRoute: LeaderboardPage.route,
+                    text: "Leaderboard",
+                  ),
+                ),
+              ),
             ],
           ),
         ),
