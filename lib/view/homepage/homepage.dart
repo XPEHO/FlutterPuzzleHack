@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:puzzle/view/homepage/widgets/menu_button.dart';
 import 'package:puzzle/view/view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -14,21 +14,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).go(
-              PuzzlePage.route,
-            );
-          },
-          child: Text(
-            AppLocalizations.of(context)!.play,
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Center(
+                  child: Text(
+                    "XPEHO MOBILE",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 48,
+                      fontFamily: "QueenOfTheModernAge",
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: MenuButton(
+                    targetRoute: PuzzlePage.route,
+                    text: AppLocalizations.of(context)!.play,
+                  ),
+                ),
+              ),
+            ],
           ),
-        )
-      ],
+        ),
+      ),
     );
   }
 }
