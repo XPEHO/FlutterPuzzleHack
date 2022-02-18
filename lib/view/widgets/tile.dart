@@ -21,8 +21,6 @@ class Tile extends StatefulWidget {
 class _TileState extends State<Tile> with TickerProviderStateMixin {
   late AnimationController _hoverAnimationController;
   late Animation<double> _hoverAnimation;
-  late AnimationController _openingAnimationController;
-  late Animation<double> _openingAnimation;
 
   @override
   void initState() {
@@ -39,22 +37,11 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
         curve: const Interval(0, 1),
       ),
     );
-
-    _openingAnimationController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward();
-
-    _openingAnimation = CurvedAnimation(
-      parent: _openingAnimationController,
-      curve: Curves.bounceOut,
-    );
   }
 
   @override
   void dispose() {
     _hoverAnimationController.dispose();
-    _openingAnimationController.dispose();
     super.dispose();
   }
 
@@ -73,23 +60,20 @@ class _TileState extends State<Tile> with TickerProviderStateMixin {
             _hoverAnimationController.reset();
             widget.onTap(widget.tile.value);
           },
-          child: ScaleTransition(
-            scale: _openingAnimation,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              width: 64.0,
-              child: widget.gotImage
-                  ? ImageTile(
-                      x: widget.tile.targetX,
-                      y: widget.tile.targetY,
-                    )
-                  : TextTile(
-                      text: '${widget.tile.value}',
-                    ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(8.0),
             ),
+            width: 64.0,
+            child: widget.gotImage
+                ? ImageTile(
+                    x: widget.tile.targetX,
+                    y: widget.tile.targetY,
+                  )
+                : TextTile(
+                    text: '${widget.tile.value}',
+                  ),
           ),
         ),
       ),

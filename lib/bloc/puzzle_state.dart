@@ -11,6 +11,8 @@ class PuzzleState with _$PuzzleState {
 }
 
 extension PuzzleStateExtension on PuzzleState {
+  bool get isStarted => puzzle.isStarted;
+
   int get complexity => puzzle.complexity;
 
   List<Tile> get data => puzzle.data;

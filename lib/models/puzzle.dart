@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:puzzle/models/models.dart';
 
 class Puzzle {
+  bool isStarted = false;
   final int complexity;
   final List<Tile> data;
 
