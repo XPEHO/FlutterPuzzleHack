@@ -31,7 +31,6 @@ class PuzzleApp extends StatelessWidget {
   }
 
   GoRouter _buildRouter() => GoRouter(
-        urlPathStrategy: UrlPathStrategy.path,
         routes: [
           GoRoute(
             path: '/',
