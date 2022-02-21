@@ -21,88 +21,229 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Center(
-                child: Text(
-                  AppLocalizations.of(context)!.team_name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 48,
-                    fontFamily: "QueenOfTheModernAge",
-                  ),
+      backgroundColor: Colors.white,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: paramHomePage(),
+          ),
+          Column(
+            children: [
+              headerHomePage(context),
+              // const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 18.0,
+                  bottom: 18.0,
                 ),
+                child: MenuButton(
+                  redirection: () {
+                    LeaderboardProvider().updateUserNickname(nickname);
+                    GoRouter.of(context).go(
+                      PuzzlePage.route,
+                    );
+                  },
+                  text: AppLocalizations.of(context)!.play,
+                  isClickable: nickname.isNotEmpty,
+                ),
+              ),
+            ],
+          ),
+          if (isFirebaseUsable())
+            Center(
+              child: MenuButton(
+                redirection: () => GoRouter.of(context).go(
+                  LeaderboardPage.route,
+                ),
+                text: AppLocalizations.of(context)!.leaderboard_btn,
+                isClickable: true,
               ),
             ),
-            Expanded(
-              child: Center(
-                child: Column(
-                  children: [
-                    if (isFirebaseUsable())
-                      TextFormField(
-                        cursorWidth: 1,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)!.nickname_hint,
-                          contentPadding: const EdgeInsets.all(12.0),
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey[600]!,
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey[600]!,
-                            ),
-                          ),
-                        ),
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[600]!,
-                        ),
-                        onChanged: (term) {
-                          setState(() {
-                            nickname = term;
-                          });
-                        },
-                      ),
-                    const SizedBox(height: 16),
-                    MenuButton(
-                      redirection: () {
-                        LeaderboardProvider().updateUserNickname(nickname);
-                        GoRouter.of(context).go(
-                          PuzzlePage.route,
-                        );
-                      },
-                      text: AppLocalizations.of(context)!.play,
-                      isClickable: nickname.isNotEmpty,
-                    ),
-                  ],
-                ),
-              ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0),
+              child: bottomBadges(),
             ),
-            if (isFirebaseUsable())
-              Expanded(
-                child: Center(
-                  child: MenuButton(
-                    redirection: () => GoRouter.of(context).go(
-                      LeaderboardPage.route,
-                    ),
-                    text: AppLocalizations.of(context)!.leaderboard_btn,
-                    isClickable: true,
-                  ),
-                ),
-              ),
-          ],
-        ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget headerHomePage(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          AppLocalizations.of(context)!.team_name,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: "QueenOfTheModernAge",
+            fontSize: 48,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        if (isFirebaseUsable())
+          Padding(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: SizedBox(
+              width: 400,
+              child: TextFormField(
+                cursorWidth: 1,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context)!.nickname_hint,
+                  contentPadding: const EdgeInsets.all(12.0),
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600]!,
+                ),
+                onChanged: (term) {
+                  setState(() {
+                    nickname = term;
+                  });
+                },
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget bottomBadges() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(3.0),
+          child: Row(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(
+                  right: 4.0,
+                ),
+                child: Icon(
+                  Icons.apple,
+                  color: Colors.white,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 4.0,
+                ),
+                child: Text(
+                  "IOS/MacOS",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            shape: BoxShape.rectangle,
+            color: Colors.grey[800],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(3.0),
+          child: Row(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(
+                  right: 4.0,
+                ),
+                child: Icon(
+                  Icons.android,
+                  color: Colors.white,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 4.0,
+                ),
+                child: Text(
+                  "Android",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            shape: BoxShape.rectangle,
+            color: Colors.grey[800],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(3.0),
+          child: Row(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(
+                  right: 4.0,
+                ),
+                child: Icon(
+                  Icons.computer,
+                  color: Colors.white,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 4.0,
+                ),
+                child: Text(
+                  "Windows/Linux/WEB",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            shape: BoxShape.rectangle,
+            color: Colors.grey[800],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget paramHomePage() {
+    return Column(
+      children: [
+        GestureDetector(
+          child: const Padding(
+            padding: EdgeInsets.only(right: 12.0),
+            child: Icon(
+              Icons.settings,
+              size: 30,
+            ),
+          ),
+          onTap: () {},
+        ),
+      ],
     );
   }
 }

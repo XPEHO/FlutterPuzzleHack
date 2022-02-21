@@ -32,7 +32,7 @@ class PuzzleApp extends StatelessWidget {
           theme: ThemeData(
               primarySwatch: xpehoGreen,
               textTheme: GoogleFonts.aBeeZeeTextTheme(),
-              backgroundColor: Colors.white),
+              backgroundColor: Colors.white,),
           themeMode: ThemeMode.light,
         );
       },

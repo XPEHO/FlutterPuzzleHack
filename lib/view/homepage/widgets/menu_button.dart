@@ -42,7 +42,8 @@ class _MenuButtonState extends State<MenuButton> {
           child: Text(
             widget.text,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -50,7 +51,9 @@ class _MenuButtonState extends State<MenuButton> {
         height: 50,
         width: 100,
         decoration: BoxDecoration(
-          color: widget.isClickable ? Colors.grey[300] : Colors.grey[700],
+          color: widget.isClickable
+              ? Theme.of(context).primaryColor
+              : const Color.fromARGB(255, 11, 66, 40),
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isElevated
               ? [
