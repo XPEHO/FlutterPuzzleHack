@@ -234,7 +234,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () => _pickImage,
+                      onPressed: () => _pickImage(),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.grey,
                         shape: const CircleBorder(),
@@ -247,7 +247,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () => _pickImage,
+                      onPressed: () {
+                        null;
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.grey,
                         shape: const CircleBorder(),
@@ -321,7 +323,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                         Row(
                           children: [
                             ElevatedButton(
-                              onPressed: () => _pickImage,
+                              onPressed: () => _pickImage(),
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey,
                                 shape: const CircleBorder(),
@@ -335,7 +337,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
                             ),
                             const SizedBox(width: 24),
                             ElevatedButton(
-                              onPressed: () => _pickImage,
+                              onPressed: () {
+                                null;
+                              },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey,
                                 shape: const CircleBorder(),
