@@ -46,6 +46,7 @@ dependencies:
   mockito: ^5.0.17
   shake: ^2.0.0
   volume_controller: ^2.0.3
+  flutter_animated_dialog: ^2.0.1
 
 dev_dependencies:
   build_runner: ^2.1.7

@@ -10,6 +10,24 @@ class Victory extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+            ),
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+              size: 50,
+            ),
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+            ),
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
@@ -17,11 +35,28 @@ class Victory extends StatelessWidget {
             style: Theme.of(context).textTheme.headline2!,
           ),
         ),
-        ElevatedButton(
-          child: Text(AppLocalizations.of(context)!.restart_btn),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        SizedBox(
+          height: 50,
+          width: 150,
+          child: ElevatedButton(
+            child: Text(
+              AppLocalizations.of(context)!.restart_btn,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );

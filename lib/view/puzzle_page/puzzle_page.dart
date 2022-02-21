@@ -4,15 +4,17 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shake/shake.dart';
+
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
-import 'package:shake/shake.dart';
 
 /// Contains the puzzle and the controls.
 class PuzzlePage extends StatefulWidget {
@@ -436,11 +438,15 @@ class _PuzzlePageState extends State<PuzzlePage> {
     if (isFirebaseUsable()) {
       LeaderboardProvider().updateUserScore(moves);
     }
-    await showDialog(
+    await showAnimatedDialog(
+      barrierDismissible: true,
       context: context,
       builder: (context) => const AlertDialog(
         content: Victory(),
       ),
+      animationType: DialogTransitionType.rotate3D,
+      curve: Curves.fastOutSlowIn,
+      duration: const Duration(seconds: 3),
     );
     _reset(context);
   }
