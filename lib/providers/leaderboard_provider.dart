@@ -4,8 +4,8 @@ import 'package:puzzle/services/leaderboard_service.dart';
 class LeaderboardProvider {
   final leaderboardService = GetIt.I.get<LeaderboardService>();
 
-  Future<int> fetchUserScore(String pseudo) async {
-    return await leaderboardService.fetchUserScore(pseudo);
+  Future<int> fetchUserScore(String nickname) async {
+    return await leaderboardService.fetchUserScore(nickname);
   }
 
   Future<Map<String, dynamic>> fetchScores() async {
@@ -16,11 +16,11 @@ class LeaderboardProvider {
     leaderboardService.updateUserScore(score);
   }
 
-  void updateUserPseudo(String pseudo) {
-    leaderboardService.pseudo = pseudo;
+  void updateUserNickname(String nickname) {
+    leaderboardService.nickname = nickname;
   }
 
-  String getUserPseudo() {
-    return leaderboardService.pseudo;
+  String getUserNickname() {
+    return leaderboardService.nickname;
   }
 }

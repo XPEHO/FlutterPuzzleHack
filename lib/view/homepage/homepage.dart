@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final formKey = GlobalKey<FormState>();
-  String pseudo = "";
+  String nickname = "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                         cursorWidth: 1,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
-                          hintText: "Pseudo...",
+                          hintText: AppLocalizations.of(context)!.nickname_hint,
                           contentPadding: const EdgeInsets.all(12.0),
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -69,20 +69,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                         onChanged: (term) {
                           setState(() {
-                            pseudo = term;
+                            nickname = term;
                           });
                         },
                       ),
                       const SizedBox(height: 16),
                       MenuButton(
                         redirection: () {
-                          LeaderboardProvider().updateUserPseudo(pseudo);
+                          LeaderboardProvider().updateUserNickname(nickname);
                           GoRouter.of(context).go(
                             PuzzlePage.route,
                           );
                         },
                         text: AppLocalizations.of(context)!.play,
-                        isClickable: pseudo.isNotEmpty,
+                        isClickable: nickname.isNotEmpty,
                       ),
                     ],
                   ),
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     redirection: () => GoRouter.of(context).go(
                       LeaderboardPage.route,
                     ),
-                    text: "Leaderboard",
+                    text: AppLocalizations.of(context)!.leaderboard_btn,
                     isClickable: true,
                   ),
                 ),
