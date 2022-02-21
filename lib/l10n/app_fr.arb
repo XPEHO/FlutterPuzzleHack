@@ -1,7 +1,11 @@
 {
-    "app_name": "Puzzle",
-    "shuffle": "Mélanger",
+    "app_name": "Flutter Puzzle Hack",
+    "company_name": "XPEHO",
     "complexity": "Complexité {complexityValue}",
+    "moves": "Déplacements : {count}",
+    "play": "Jouer",
+    "restart_btn": "Recommencer",
+    "shuffle": "Mélanger",
     "solve": "Résoudre",
     "team_name": "Xpeho mobile",
     "moves": "Mouvements {count}",

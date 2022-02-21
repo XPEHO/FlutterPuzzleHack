@@ -1,11 +1,11 @@
 {
-    "app_name": "Puzzle",
+    "app_name": "Flutter Puzzle Hack",
     "@app_name": {
       "description": "Name of the application"
     },
-    "shuffle": "Shuffle",
-    "@shuffle": {
-      "description": "Shuffle button label"
+    "company_name": "XPEHO",
+    "@company_name": {
+      "description": "Company name"
     },
     "complexity": "Complexity {complexityValue}",
     "@complexity": {
@@ -17,15 +17,7 @@
         }
       }
     },
-    "solve": "Solve",
-    "@solve": {
-      "description": "Solve button label"
-    },
-    "team_name": "Xpeho mobile",
-    "@team_name": {
-      "description": "Team name"
-    },
-    "moves": "Moves {count}",
+    "moves": "Moves: {count}",
     "@moves": {
       "description": "Moves label",
       "placeholders": {
@@ -38,10 +30,6 @@
     "play": "Play",
     "@play": {
       "description": "Play button label"
-    },
-    "victory_title": "You win !",
-    "@victory_title": {
-      "description": "Victory title"
     },
     "restart_btn": "Restart",
     "@restart_btn": {
@@ -68,5 +56,21 @@
     "empty_nickname_error": "Nickname can't be empty",
     "@empty_nickname_error": {
       "description": "Error displayed when the user validate a null nickname"
+    },
+    "shuffle": "Shuffle",
+    "@shuffle": {
+      "description": "Shuffle button label"
+    },
+    "solve": "Solve",
+    "@solve": {
+      "description": "Solve button label"
+    },
+    "team_name": "Xpeho mobile",
+    "@team_name": {
+      "description": "Team name"
+    },
+    "victory_title": "You win !",
+    "@victory_title": {
+      "description": "Victory title"
     }
 }

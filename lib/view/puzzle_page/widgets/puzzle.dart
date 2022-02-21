@@ -44,31 +44,40 @@ class _PuzzleState extends State<Puzzle> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _openingAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: widget.size,
-      mainAxisSpacing: 8.0,
-      crossAxisSpacing: 8.0,
-      children: widget.data.map((value) {
-        return AnimatedSwitcher(
-            duration: const Duration(milliseconds: 400),
-            reverseDuration: const Duration(milliseconds: 200),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return ScaleTransition(scale: animation, child: child);
-            },
-            child: ScaleTransition(
-                key: ValueKey<int>(value.value),
-                scale: _openingAnimation,
-                child: Tile(
-                  tile: value,
-                  onTap: (int number) {
-                    setState(() {
-                      widget.onTileTapped(number);
-                    });
-                  },
-                  gotImage: context.read<PuzzleCubit>().state.image != null,
-                )));
-      }).toList(),
+    return Center(
+      child: GridView.count(
+        crossAxisCount: widget.size,
+        mainAxisSpacing: 8.0,
+        crossAxisSpacing: 8.0,
+        shrinkWrap: true,
+        children: widget.data.map((value) {
+          return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              reverseDuration: const Duration(milliseconds: 200),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return ScaleTransition(scale: animation, child: child);
+              },
+              child: ScaleTransition(
+                  key: ValueKey<int>(value.value),
+                  scale: _openingAnimation,
+                  child: Tile(
+                    tile: value,
+                    onTap: (int number) {
+                      setState(() {
+                        widget.onTileTapped(number);
+                      });
+                    },
+                    gotImage: context.read<PuzzleCubit>().state.image != null,
+                  )));
+        }).toList(),
+      ),
     );
   }
 }

@@ -8,14 +8,24 @@ class PuzzleTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(AppLocalizations.of(context)!.app_name,
-            style: Theme.of(context).textTheme.headline2),
         Text(
-          AppLocalizations.of(context)!.team_name,
-          style: Theme.of(context).textTheme.headline4!.copyWith(
-                color: Theme.of(context).primaryColor,
-              ),
+          AppLocalizations.of(context)!.app_name,
+          style: const TextStyle(
+            fontFamily: "QueenOfTheModernAge",
+            fontSize: 24,
+            color: Colors.grey,
+          ),
+          textAlign: TextAlign.center,
         ),
+        const SizedBox(
+          height: 12,
+        ),
+        Text(AppLocalizations.of(context)!.company_name,
+            style: TextStyle(
+              fontFamily: "QueenOfTheModernAge",
+              fontSize: 24,
+              color: Theme.of(context).primaryColor,
+            )),
       ],
     );
   }

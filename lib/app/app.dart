@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/view.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +19,10 @@ class PuzzleApp extends StatelessWidget {
       builder: (context) {
         final _router = _buildRouter();
 
+        if (isMobile()) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+        }
+
         return MaterialApp.router(
           routeInformationParser: _router.routeInformationParser,
           routerDelegate: _router.routerDelegate,
@@ -23,8 +30,10 @@ class PuzzleApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
-            primarySwatch: xpehoGreen,
-          ),
+              primarySwatch: xpehoGreen,
+              textTheme: GoogleFonts.aBeeZeeTextTheme(),
+              backgroundColor: Colors.white),
+          themeMode: ThemeMode.light,
         );
       },
     );

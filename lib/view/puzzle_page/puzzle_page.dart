@@ -150,64 +150,117 @@ class _PuzzlePageState extends State<PuzzlePage> {
   /// Build the portrait mode
   Widget _buildPortrait(BuildContext context, PuzzleState state) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              onPressed: () => _shuffle(context),
-              icon: const Icon(Icons.shuffle),
-            ),
-            IconButton(
-              onPressed: () => _reset(context),
-              icon: const Icon(Icons.refresh),
-            ),
-            IconButton(
-              onPressed: _pickImage,
-              icon: const Icon(Icons.attach_file),
-            ),
-          ],
-        ),
-      ),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  flex: 2,
-                  fit: FlexFit.tight,
-                  child: Text(
-                    AppLocalizations.of(context)!.moves(state.moves),
-                    style: Theme.of(context).textTheme.headline5!,
-                  ),
-                ),
-                Flexible(
-                  flex: 10,
-                  child: Focus(
-                    onKey: (_, event) => _onKeyEvent(
-                      context,
-                      event,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: isMobile()
+                    ? const EdgeInsets.symmetric(vertical: 24.0)
+                    : const EdgeInsets.symmetric(vertical: 8.0),
+                child: const PuzzleTitle(),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.moves(state.moves),
+                      style: Theme.of(context).textTheme.headline5!,
                     ),
-                    autofocus: true,
-                    canRequestFocus: true,
-                    focusNode: _puzzleFocusNode,
-                    child: Puzzle(
-                      size: state.complexity,
-                      data: state.data,
-                      onTileTapped: (value) {
-                        _trySwap(context, value);
-                        _puzzleFocusNode.requestFocus();
-                      },
+                    const SizedBox(
+                      height: 12.0,
                     ),
-                  ),
+                    Focus(
+                      onKey: (_, event) => _onKeyEvent(
+                        context,
+                        event,
+                      ),
+                      autofocus: true,
+                      canRequestFocus: true,
+                      focusNode: _puzzleFocusNode,
+                      child: FractionallySizedBox(
+                        widthFactor: isMobile() ? 1 : 0.7,
+                        child: Puzzle(
+                          size: state.complexity,
+                          data: state.data,
+                          onTileTapped: (value) {
+                            _trySwap(context, value);
+                            _puzzleFocusNode.requestFocus();
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: isMobile()
+                    ? const EdgeInsets.symmetric(vertical: 24.0)
+                    : const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => _shuffle(context),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.shuffle,
+                        color: Colors.white,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => _reset(context),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.refresh,
+                        color: Colors.white,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => _pickImage,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.attach_file,
+                        color: Colors.white,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => _pickImage,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.volume_mute,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -217,76 +270,133 @@ class _PuzzlePageState extends State<PuzzlePage> {
   /// Build the landscape mode
   Widget _buildLandscape(BuildContext context, PuzzleState state) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      backgroundColor: Colors.white,
+      body: Row(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(24.0),
-            child: PuzzleTitle(),
-          ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .3,
-                  height: double.infinity,
-                  child: Material(
-                    color: Colors.grey.shade100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.moves(state.moves),
-                            style: Theme.of(context).textTheme.headline5!,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Wrap(
+                      direction: Axis.vertical,
+                      spacing: 24,
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => _shuffle(context),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey,
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(32),
+                                elevation: 0,
+                              ),
+                              child: const Icon(
+                                Icons.shuffle,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 24),
+                            ElevatedButton(
+                              onPressed: () => _reset(context),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey,
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(32),
+                                elevation: 0,
+                              ),
+                              child: const Icon(
+                                Icons.refresh,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => _pickImage,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey,
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(32),
+                                elevation: 0,
+                              ),
+                              child: const Icon(
+                                Icons.attach_file,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 24),
+                            ElevatedButton(
+                              onPressed: () => _pickImage,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey,
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(32),
+                                elevation: 0,
+                              ),
+                              child: const Icon(
+                                Icons.volume_up,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                        /*
+                        Visibility(
+                          visible: false,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
-                                onPressed: () => _shuffle(context),
-                                icon: const Icon(
-                                  Icons.shuffle,
+                              const Icon(Icons.volume_down),
+                              Flexible(
+                                child: Slider(
+                                  activeColor: Colors.indigoAccent,
+                                  min: 0.0,
+                                  max: 1.0,
+                                  onChanged: (newRating) async {
+                                    setState(() {
+                                      audioService.volume = newRating;
+                                    });
+                                    audioService.updateVolume(newRating);
+                                    _puzzleFocusNode.requestFocus();
+                                  },
+                                  value: audioService.volume,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: _pickImage,
-                                icon: const Icon(Icons.attach_file),
-                              ),
+                              const Icon(Icons.volume_up),
                             ],
                           ),
-                          const SizedBox(height: 16),
-                          if (!isMobile())
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.volume_down),
-                                Flexible(
-                                  child: Slider(
-                                    activeColor: Colors.indigoAccent,
-                                    min: 0.0,
-                                    max: 1.0,
-                                    onChanged: (newRating) async {
-                                      setState(() {
-                                        audioService.volume = newRating;
-                                      });
-                                      audioService.updateVolume(newRating);
-                                      _puzzleFocusNode.requestFocus();
-                                    },
-                                    value: audioService.volume,
-                                  ),
-                                ),
-                                const Icon(Icons.volume_up),
-                              ],
-                            ),
-                        ],
-                      ),
+                        ),
+                        */
+                      ],
                     ),
                   ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                  child: PuzzleTitle(),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppLocalizations.of(context)!.moves(state.moves),
+                    style: Theme.of(context).textTheme.headline5!,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12.0,
                 ),
                 Expanded(
                   child: Focus(
@@ -307,14 +417,13 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .3,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image.asset('assets/images/mascotte.jpeg'),
-                  ),
-                ),
               ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset('assets/images/mascotte.jpeg'),
             ),
           ),
         ],
