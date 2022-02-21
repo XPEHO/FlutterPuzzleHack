@@ -8,7 +8,7 @@ import 'package:puzzle/models/models.dart';
 import 'package:puzzle/services/audio_service.dart';
 
 class PuzzleCubit extends Cubit<PuzzleState> {
-  PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)));
+  PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)..shuffle()));
   AudioService audioService = GetIt.I.get<AudioService>();
 
   void shuffle() {
