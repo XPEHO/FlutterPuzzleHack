@@ -59,23 +59,23 @@ class _PuzzleState extends State<Puzzle> with TickerProviderStateMixin {
         shrinkWrap: true,
         children: widget.data.map((value) {
           return AnimatedSwitcher(
-            duration: const Duration(milliseconds: 400),
-            reverseDuration: const Duration(milliseconds: 200),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return ScaleTransition(scale: animation, child: child);
-            },
-            child: ScaleTransition(
-                key: ValueKey<int>(value.value),
-                scale: _openingAnimation,
-                child:Tile(
-            tile: value,
-            onTap: (int number) {
-                    setState(() {
-                      widget.onTileTapped(number);
-                    });
-                  },
-            gotImage: context.read<PuzzleCubit>().state.image != null,
-          )));
+              duration: const Duration(milliseconds: 400),
+              reverseDuration: const Duration(milliseconds: 200),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return ScaleTransition(scale: animation, child: child);
+              },
+              child: ScaleTransition(
+                  key: ValueKey<int>(value.value),
+                  scale: _openingAnimation,
+                  child: Tile(
+                    tile: value,
+                    onTap: (int number) {
+                      setState(() {
+                        widget.onTileTapped(number);
+                      });
+                    },
+                    gotImage: context.read<PuzzleCubit>().state.image != null,
+                  )));
         }).toList(),
       ),
     );
