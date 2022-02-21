@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 
@@ -29,7 +30,7 @@ class _UserScoreState extends State<UserScore> {
                 cursorWidth: 1,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  hintText: "Pseudo...",
+                  hintText: AppLocalizations.of(context)!.nickname_hint,
                   prefixIcon: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Icon(Icons.search),
@@ -51,26 +52,28 @@ class _UserScoreState extends State<UserScore> {
                   fontSize: 16,
                   color: Colors.grey[600]!,
                 ),
-                onFieldSubmitted: (pseudo) async {
+                onFieldSubmitted: (nickname) async {
                   if (formKey.currentState!.validate()) {
                     setState(() {
                       _futureFetchUserScore =
-                          LeaderboardProvider().fetchUserScore(pseudo);
+                          LeaderboardProvider().fetchUserScore(nickname);
                     });
                   }
                 },
-                validator: (pseudo) => _validateValue(pseudo!),
+                validator: (nickname) => _validateValue(nickname!),
               ),
             );
           } else {
-            return Text("Your score: ${snapshot.data}");
+            return Text(
+              AppLocalizations.of(context)!.your_score(snapshot.data!),
+            );
           }
         });
   }
 
-  String? _validateValue(String pseudo) {
-    if (pseudo.isEmpty) {
-      return "Pseudo can't be null";
+  String? _validateValue(String nickname) {
+    if (nickname.isEmpty) {
+      return AppLocalizations.of(context)!.empty_nickname_error;
     }
     return null;
   }

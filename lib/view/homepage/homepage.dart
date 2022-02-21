@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                   redirection: () => GoRouter.of(context).go(
                     LeaderboardPage.route,
                   ),
-                  text: "Leaderboard",
+                  text: AppLocalizations.of(context)!.leaderboard_btn,
                   isClickable: true,
                 ),
               ),
