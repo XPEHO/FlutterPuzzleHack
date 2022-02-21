@@ -42,9 +42,9 @@ jobs:
           flutter-version: '2.10.0'
       - name: create firebase options
         run: |
-          echo %FIREBASE_OPTIONS% | base64 -d > lib/firebase_options.dart
-          more lib/firebase_options.dart
-          flutter format lib/firebase_options.dart
+          echo %FIREBASE_OPTIONS% | base64 -d > lib\firebase_options.dart
+          more lib\firebase_options.dart
+          flutter format lib\firebase_options.dart
         env:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
       - name: analyze code
