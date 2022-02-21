@@ -324,7 +324,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
 
   /// Show a dialog to the user to celebrate victory
   Future<void> _showVictoryScreen(BuildContext context, int moves) async {
-    LeaderboardProvider().updateUserScore(moves);
+    if (isFirebaseUsable()) {
+      LeaderboardProvider().updateUserScore(moves);
+    }
     await showDialog(
       context: context,
       builder: (context) => const AlertDialog(

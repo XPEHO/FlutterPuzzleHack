@@ -12,3 +12,12 @@ bool isMobile() {
   }
   return false;
 }
+
+bool isFirebaseUsable() {
+  if (!kIsWeb) {
+    if (Platform.isWindows || Platform.isLinux) {
+      return false;
+    }
+  }
+  return true;
+}
