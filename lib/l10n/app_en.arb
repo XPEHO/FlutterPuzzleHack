@@ -72,5 +72,9 @@
     "victory_title": "You win !",
     "@victory_title": {
       "description": "Victory title"
+    },
+    "leader_board_subtitle": "Scoreboard : ",
+    "@leader_board_subtitle": {
+      "description": "Scoreboard : "
     }
 }

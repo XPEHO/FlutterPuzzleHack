@@ -38,13 +38,15 @@ class _UserScoreState extends State<UserScore> {
                   contentPadding: const EdgeInsets.all(12.0),
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
-                      color: Colors.grey[600]!,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
-                      color: Colors.grey[600]!,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),

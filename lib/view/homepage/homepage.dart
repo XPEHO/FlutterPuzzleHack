@@ -100,17 +100,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            Expanded(
-              child: Center(
-                child: MenuButton(
-                  redirection: () => GoRouter.of(context).go(
-                    LeaderboardPage.route,
-                  ),
-                  text: AppLocalizations.of(context)!.leaderboard_btn,
-                  isClickable: true,
-                ),
-              ),
-            ),
           ],
         ),
       ),
