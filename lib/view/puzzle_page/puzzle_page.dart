@@ -151,64 +151,73 @@ class _PuzzlePageState extends State<PuzzlePage> {
   Widget _buildPortrait(BuildContext context, PuzzleState state) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              onPressed: () => _shuffle(context),
-              icon: const Icon(Icons.shuffle),
-            ),
-            IconButton(
-              onPressed: () => _reset(context),
-              icon: const Icon(Icons.refresh),
-            ),
-            IconButton(
-              onPressed: _pickImage,
-              icon: const Icon(Icons.attach_file),
-            ),
-          ],
-        ),
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  flex: 2,
-                  fit: FlexFit.tight,
-                  child: Text(
-                    AppLocalizations.of(context)!.moves(state.moves),
-                    style: Theme.of(context).textTheme.headline5!,
-                  ),
-                ),
-                Flexible(
-                  flex: 10,
-                  child: Focus(
-                    onKey: (_, event) => _onKeyEvent(
-                      context,
-                      event,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 24.0),
+                child: PuzzleTitle(isLandscape: false),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.moves(state.moves),
+                      style: Theme.of(context).textTheme.headline5!,
                     ),
-                    autofocus: true,
-                    canRequestFocus: true,
-                    focusNode: _puzzleFocusNode,
-                    child: Puzzle(
-                      size: state.complexity,
-                      data: state.data,
-                      onTileTapped: (value) {
-                        _trySwap(context, value);
-                        _puzzleFocusNode.requestFocus();
-                      },
+                    const SizedBox(
+                      height: 18.0,
                     ),
-                  ),
+                    Focus(
+                      onKey: (_, event) => _onKeyEvent(
+                        context,
+                        event,
+                      ),
+                      autofocus: true,
+                      canRequestFocus: true,
+                      focusNode: _puzzleFocusNode,
+                      child: Puzzle(
+                        size: state.complexity,
+                        data: state.data,
+                        onTileTapped: (value) {
+                          _trySwap(context, value);
+                          _puzzleFocusNode.requestFocus();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      onPressed: () => _shuffle(context),
+                      icon: const Icon(Icons.shuffle),
+                    ),
+                    IconButton(
+                      onPressed: () => _reset(context),
+                      icon: const Icon(Icons.refresh),
+                    ),
+                    IconButton(
+                      onPressed: _pickImage,
+                      icon: const Icon(Icons.attach_file),
+                    ),
+                    IconButton(
+                      onPressed: _pickImage,
+                      icon: const Icon(Icons.attach_file),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -226,7 +235,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
               children: [
                 const Padding(
                   padding: EdgeInsets.all(24.0),
-                  child: PuzzleTitle(),
+                  child: PuzzleTitle(isLandscape: true),
                 ),
                 Expanded(
                   child: Padding(

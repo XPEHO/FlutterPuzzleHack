@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PuzzleTitle extends StatelessWidget {
-  const PuzzleTitle({Key? key}) : super(key: key);
+  const PuzzleTitle({Key? key, required this.isLandscape}) : super(key: key);
+  final bool isLandscape;
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +11,15 @@ class PuzzleTitle extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.app_name,
-          style: Theme.of(context).textTheme.headline4?.copyWith(
-                fontFamily: "QueenOfTheModernAge",
-              ),
+          style: isLandscape
+              ? Theme.of(context).textTheme.headline4?.copyWith(
+                    fontFamily: "QueenOfTheModernAge",
+                  )
+              : const TextStyle(
+                  fontFamily: "QueenOfTheModernAge",
+                  fontSize: 24,
+                  color: Colors.grey,
+                ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(
@@ -20,10 +27,15 @@ class PuzzleTitle extends StatelessWidget {
         ),
         Text(
           AppLocalizations.of(context)!.company_name,
-          style: Theme.of(context).textTheme.headline4?.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontFamily: "QueenOfTheModernAge",
-              ),
+          style: isLandscape
+              ? Theme.of(context).textTheme.headline4?.copyWith(
+                    fontFamily: "QueenOfTheModernAge",
+                  )
+              : TextStyle(
+                  fontFamily: "QueenOfTheModernAge",
+                  fontSize: 24,
+                  color: Theme.of(context).primaryColor,
+                ),
         ),
       ],
     );

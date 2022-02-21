@@ -17,7 +17,7 @@
         }
       }
     },
-    "moves": "Moves {count}",
+    "moves": "Moves: {count}",
     "@moves": {
       "description": "Moves label",
       "placeholders": {

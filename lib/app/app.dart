@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/view.dart';
@@ -23,8 +24,8 @@ class PuzzleApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
-            primarySwatch: xpehoGreen,
-          ),
+              primarySwatch: xpehoGreen,
+              textTheme: GoogleFonts.aBeeZeeTextTheme()),
         );
       },
     );

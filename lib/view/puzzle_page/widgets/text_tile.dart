@@ -14,7 +14,7 @@ class TextTile extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: GoogleFonts.lato(fontStyle: FontStyle.italic).copyWith(
+        style: const TextStyle(
           fontSize: 40,
           fontWeight: FontWeight.bold,
           color: Colors.white,
