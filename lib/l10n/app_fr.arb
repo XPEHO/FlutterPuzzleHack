@@ -7,5 +7,9 @@
     "moves": "Mouvements {count}",
     "play": "Jouer",
     "victory_title": "Victoire !",
-    "restart_btn": "Recommencer"
+    "restart_btn": "Recommencer",
+    "leaderboard_btn": "Leaderboard",
+    "nickname_hint": "Entrez votre pseudo...",
+    "your_score": "Votre score: {value}",
+    "empty_nickname_error": "Le pseudonyme ne peut être vide"
 }

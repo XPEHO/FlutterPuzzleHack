@@ -30,6 +30,7 @@
 .pub-cache/
 .pub/
 /build/
+pubspec.lock
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -46,3 +47,9 @@ app.*.map.json
 /android/app/release
 
 coverage/
+
+# Firebase
+/lib/firebase_options.dart
+
+# fvm
+.fvm/

@@ -14,6 +14,12 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.8.1'
+      - name: create firebase options
+        run: |
+          echo $FIREBASE_OPTIONS | base64 -d > lib/firebase_options.dart
+          flutter format lib/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
       - run: |
           flutter pub get
           flutter build web

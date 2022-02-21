@@ -46,5 +46,27 @@
     "restart_btn": "Restart",
     "@restart_btn": {
       "description": "Restart button label"
+    },
+    "leaderboard_btn": "Leaderboard",
+    "@leaderboard_btn": {
+      "description": "Leaderboard button label"
+    },
+    "nickname_hint": "Enter your nickname...",
+    "@nickname_hint": {
+      "description": "Hint for nickname textfield"
+    },
+    "your_score": "Your score: {value}",
+    "@your_score": {
+      "description": "Text displayed when user score is searched",
+      "placeholders": {
+        "value": {
+          "description": "the score",
+          "example": "42"
+        }
+      }
+    },
+    "empty_nickname_error": "Nickname can't be empty",
+    "@empty_nickname_error": {
+      "description": "Error displayed when the user validate a null nickname"
     }
 }

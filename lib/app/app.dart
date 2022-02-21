@@ -63,6 +63,24 @@ class PuzzleApp extends StatelessWidget {
               child: const PuzzlePage(),
             ),
           ),
+          GoRoute(
+            path: LeaderboardPage.route,
+            pageBuilder: (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const LeaderboardPage(),
+              transitionDuration: Duration.zero,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) =>
+                  FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            ),
+          ),
         ],
       );
 }
