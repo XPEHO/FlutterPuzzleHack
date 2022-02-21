@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/shared.dart';
+import 'package:puzzle/view/homepage/widgets/complexity_radio.dart';
 import 'package:puzzle/view/homepage/widgets/menu_button.dart';
 import 'package:puzzle/view/view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = "/homePage";
@@ -17,6 +20,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final formKey = GlobalKey<FormState>();
   String nickname = "";
+  late int complexity;
+
+  @override
+  initState() {
+    super.initState();
+    complexity = context.read<PuzzleCubit>().state.complexity;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +56,38 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: Column(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ComplexityRadio(
+                              label: '3x3',
+                              complexity: 3,
+                              groupValue: complexity,
+                              onComplexitySelected: (value) {
+                                _onComplexitySelected(context, value!);
+                              },
+                            ),
+                            ComplexityRadio(
+                              label: '4x4',
+                              complexity: 4,
+                              groupValue: complexity,
+                              onComplexitySelected: (value) {
+                                _onComplexitySelected(context, value!);
+                              },
+                            ),
+                            ComplexityRadio(
+                              label: '5x5',
+                              complexity: 5,
+                              groupValue: complexity,
+                              onComplexitySelected: (value) {
+                                _onComplexitySelected(context, value!);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
                       if (isFirebaseUsable())
                         TextFormField(
                           cursorWidth: 1,
@@ -108,5 +150,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _onComplexitySelected(BuildContext context, int value) {
+    setState(() {
+      complexity = value;
+    });
+    context.read<PuzzleCubit>().selectedComplexity = value;
   }
 }
