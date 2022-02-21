@@ -44,6 +44,12 @@ class _PuzzleState extends State<Puzzle> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _openingAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: GridView.count(
