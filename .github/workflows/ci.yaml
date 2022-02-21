@@ -34,7 +34,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.0'
-      - run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
+      - name: add firebase options
+        run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
       - name: analyze code
         run: |
           flutter pub get
@@ -60,7 +61,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.0'
-      - run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
+      - name: add firebase options
+        run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
       - name: analyze code
         run: |
           flutter pub get
