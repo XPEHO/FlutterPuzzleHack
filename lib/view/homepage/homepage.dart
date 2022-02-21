@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -7,7 +8,7 @@ import 'package:puzzle/view/homepage/widgets/menu_button.dart';
 import 'package:puzzle/view/view.dart';
 
 class HomePage extends StatefulWidget {
-  static const String route = "/homePage";
+  static const String route = '/homePage';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -16,56 +17,83 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final formKey = GlobalKey<FormState>();
-  String nickname = "";
+  String nickname = '';
+  bool darkmode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentTheme();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: paramHomePage(),
-          ),
-          Column(
-            children: [
-              headerHomePage(context),
-              // const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 18.0,
-                  bottom: 18.0,
-                ),
-                child: MenuButton(
-                  redirection: () {
-                    LeaderboardProvider().updateUserNickname(nickname);
-                    GoRouter.of(context).go(
-                      PuzzlePage.route,
-                    );
-                  },
-                  text: AppLocalizations.of(context)!.play,
-                  isClickable: nickname.isNotEmpty,
-                ),
-              ),
-            ],
-          ),
-          if (isFirebaseUsable())
-            Center(
-              child: MenuButton(
-                redirection: () => GoRouter.of(context).go(
-                  LeaderboardPage.route,
-                ),
-                text: AppLocalizations.of(context)!.leaderboard_btn,
-                isClickable: true,
+          Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  darkModeButton(),
+                  levelButton(),
+                ],
               ),
             ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          ),
+          Expanded(
+            flex: 3,
+            child: headerHomePage(context),
+          ),
+          Expanded(
+            flex: 1,
             child: Padding(
-              padding: const EdgeInsets.only(top: 32.0),
-              child: bottomBadges(),
+              padding: const EdgeInsets.only(
+                top: 9.0,
+                bottom: 9.0,
+              ),
+              child: MenuButton(
+                redirection: () {
+                  LeaderboardProvider().updateUserNickname(nickname);
+                  GoRouter.of(context).go(
+                    PuzzlePage.route,
+                  );
+                },
+                text: AppLocalizations.of(context)!.play,
+                isClickable: nickname.isNotEmpty,
+              ),
+            ),
+          ),
+          if (isFirebaseUsable())
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 9.0,
+                  bottom: 9.0,
+                ),
+                child: MenuButton(
+                  redirection: () => GoRouter.of(context).go(
+                    LeaderboardPage.route,
+                  ),
+                  text: AppLocalizations.of(context)!.leaderboard_btn,
+                  isClickable: true,
+                ),
+              ),
+            ),
+          Expanded(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 18.0),
+                child: bottomBadges(),
+              ),
             ),
           ),
         ],
@@ -80,7 +108,7 @@ class _HomePageState extends State<HomePage> {
           AppLocalizations.of(context)!.team_name,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontFamily: "QueenOfTheModernAge",
+            fontFamily: 'QueenOfTheModernAge',
             fontSize: 48,
             color: Theme.of(context).primaryColor,
           ),
@@ -126,6 +154,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future getCurrentTheme() async {
+    final savedThemeMode = await AdaptiveTheme.getThemeMode();
+    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
+      setState(() {
+        darkmode = true;
+      });
+    } else {
+      setState(() {
+        darkmode = false;
+      });
+    }
+  }
+
   Widget bottomBadges() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -148,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                   left: 4.0,
                 ),
                 child: Text(
-                  "IOS/MacOS",
+                  'IOS/MacOS',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -180,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                   left: 4.0,
                 ),
                 child: Text(
-                  "Android",
+                  'Android',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -212,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                   left: 4.0,
                 ),
                 child: Text(
-                  "Windows/Linux/WEB",
+                  'Windows/Linux/WEB',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -230,20 +271,32 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget paramHomePage() {
-    return Column(
-      children: [
-        GestureDetector(
-          child: const Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.settings,
-              size: 30,
-            ),
-          ),
-          onTap: () {},
-        ),
-      ],
+  Widget levelButton() {
+    return IconButton(
+      onPressed: () {
+        setState(() {});
+      },
+      icon: const Icon(
+        Icons.format_list_numbered,
+      ),
+    );
+  }
+
+  Widget darkModeButton() {
+    return IconButton(
+      onPressed: () {
+        setState(
+          () {
+            darkmode
+                ? AdaptiveTheme.of(context).setLight()
+                : AdaptiveTheme.of(context).setDark();
+            darkmode = !darkmode;
+          },
+        );
+      },
+      icon: Icon(
+        darkmode ? Icons.wb_sunny : Icons.dark_mode,
+      ),
     );
   }
 }

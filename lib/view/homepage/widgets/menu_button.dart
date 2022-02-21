@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puzzle/theme/theme.dart';
 
 class MenuButton extends StatefulWidget {
   final Function redirection;
@@ -53,7 +54,7 @@ class _MenuButtonState extends State<MenuButton> {
         decoration: BoxDecoration(
           color: widget.isClickable
               ? Theme.of(context).primaryColor
-              : const Color.fromARGB(255, 11, 66, 40),
+              : xpehoGreenDark,
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isElevated
               ? [

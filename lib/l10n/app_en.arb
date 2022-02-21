@@ -76,5 +76,9 @@
     "leader_board_subtitle": "Scoreboard : ",
     "@leader_board_subtitle": {
       "description": "Scoreboard : "
+    },
+    "bottom_badges_title": "CrossPlatform : ",
+    "@bottom_badges_title": {
+      "description": "CrossPlatform : "
     }
 }

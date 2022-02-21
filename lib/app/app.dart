@@ -1,8 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/theme/theme.dart';
@@ -23,17 +23,30 @@ class PuzzleApp extends StatelessWidget {
           SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         }
 
-        return MaterialApp.router(
-          routeInformationParser: _router.routeInformationParser,
-          routerDelegate: _router.routerDelegate,
-          onGenerateTitle: (context) => AppLocalizations.of(context)!.app_name,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: ThemeData(
-              primarySwatch: xpehoGreen,
-              textTheme: GoogleFonts.aBeeZeeTextTheme(),
-              backgroundColor: Colors.white,),
-          themeMode: ThemeMode.light,
+        return AdaptiveTheme(
+          light: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: xpehoGreen,
+            backgroundColor: Colors.white,
+            primaryColor: xpehoGreen,
+          ),
+          dark: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: xpehoGreen,
+            backgroundColor: Colors.grey[900],
+            primaryColor: xpehoGreen,
+          ),
+          initial: AdaptiveThemeMode.light,
+          builder: (theme, darkTheme) => MaterialApp.router(
+            routeInformationParser: _router.routeInformationParser,
+            routerDelegate: _router.routerDelegate,
+            onGenerateTitle: (context) =>
+                AppLocalizations.of(context)!.app_name,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            theme: theme,
+            darkTheme: darkTheme,
+          ),
         );
       },
     );
