@@ -159,7 +159,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
             children: [
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 32.0),
-                child: PuzzleTitle(isLandscape: false),
+                child: PuzzleTitle(),
               ),
               Expanded(
                 child: Column(
@@ -273,7 +273,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
               children: [
                 const Padding(
                   padding: EdgeInsets.all(24.0),
-                  child: PuzzleTitle(isLandscape: true),
+                  child: PuzzleTitle(),
                 ),
                 Expanded(
                   child: Padding(
