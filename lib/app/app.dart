@@ -44,7 +44,7 @@ class PuzzleApp extends StatelessWidget {
           GoRoute(
             path: '/',
             redirect: (state) {
-              return PuzzlePage.route;
+              return HomePage.route;
             },
           ),
           GoRoute(
