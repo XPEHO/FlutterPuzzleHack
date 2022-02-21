@@ -52,6 +52,21 @@ Available platforms :
 Coming soon Linux and ... WatchOS
 
 
+## macOS arm64 Build (M1 chip)
+
+If you use a MacOS machine, you can build the app for arm64 using the following command:
+
+```bash
+$ sudo arch -x86_64 gem install ffi
+$ cd macos # or ios
+$ arch -x86_64 pod install
+$ cd ..
+$ flutter build macos --debug # or flutter run -d macos
+```
+
+This commands will build the macOS app for x86_64 architecture and will run the app using Rosetta.
+
+
 ---
 
 
