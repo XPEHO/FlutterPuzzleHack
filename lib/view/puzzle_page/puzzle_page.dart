@@ -11,7 +11,6 @@ import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
-import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -146,13 +145,6 @@ class _PuzzlePageState extends State<PuzzlePage> {
         context.read<PuzzleCubit>().loadUiImage(bytes);
       }
     }
-  }
-
-  /// Shuffle the puzzle.
-  void _darkMode(BuildContext context) {
-    setState(() {});
-    //context.read<PuzzleCubit>().darkMode();
-    _puzzleFocusNode.requestFocus();
   }
 
   /// Build the portrait mode

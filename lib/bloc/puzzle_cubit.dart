@@ -15,10 +15,6 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     emitNewState(state.puzzle.shuffle(), 0);
   }
 
-  void darkMode() {
-    emitNewState(state.puzzle.shuffle(), 0);
-  }
-
   /// try to swap the tile with the empty tile
   trySwap(int value) {
     if (state.puzzle.canSwap(value)) {
