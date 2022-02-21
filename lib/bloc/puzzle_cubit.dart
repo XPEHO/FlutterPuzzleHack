@@ -80,6 +80,10 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     emitNewState(Puzzle.generate(state.puzzle.complexity - 1), 0);
   }
 
+  set selectedComplexity(int complexity) {
+    emitNewState(Puzzle.generate(complexity), 0);
+  }
+
   void emitNewState(Puzzle newPuzzle, int moves) {
     emit(state.copyWith(puzzle: newPuzzle, moves: moves));
   }

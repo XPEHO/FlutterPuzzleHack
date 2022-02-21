@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class MenuButton extends StatefulWidget {
-  final String targetRoute;
+  final Function redirection;
   final String text;
+  final bool isClickable;
 
-  const MenuButton({required this.targetRoute, required this.text, Key? key})
+  const MenuButton(
+      {required this.redirection,
+      required this.text,
+      required this.isClickable,
+      Key? key})
       : super(key: key);
 
   @override
@@ -19,17 +23,19 @@ class _MenuButtonState extends State<MenuButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) {
-        setState(() {
-          _isElevated = !_isElevated;
-        });
+        if (widget.isClickable) {
+          setState(() {
+            _isElevated = !_isElevated;
+          });
+        }
       },
       onTapUp: (_) {
-        setState(() {
-          _isElevated = !_isElevated;
-        });
-        GoRouter.of(context).go(
-          widget.targetRoute,
-        );
+        if (widget.isClickable) {
+          setState(() {
+            _isElevated = !_isElevated;
+          });
+          widget.redirection();
+        }
       },
       child: AnimatedContainer(
         child: Center(
@@ -44,7 +50,7 @@ class _MenuButtonState extends State<MenuButton> {
         height: 50,
         width: 100,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: widget.isClickable ? Colors.grey[300] : Colors.grey[700],
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isElevated
               ? [

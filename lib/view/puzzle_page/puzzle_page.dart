@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:puzzle/bloc/bloc.dart';
+import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
@@ -51,7 +52,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
         builder: (context, orientation) {
           if (state.puzzle.isSolved && state.moves > 0) {
             WidgetsBinding.instance?.addPostFrameCallback(
-              (timeStamp) => _showVictoryScreen(context),
+              (timeStamp) => _showVictoryScreen(context, state.moves),
             );
           }
           if (orientation == Orientation.portrait) {
@@ -322,7 +323,10 @@ class _PuzzlePageState extends State<PuzzlePage> {
   }
 
   /// Show a dialog to the user to celebrate victory
-  Future<void> _showVictoryScreen(BuildContext context) async {
+  Future<void> _showVictoryScreen(BuildContext context, int moves) async {
+    if (isFirebaseUsable()) {
+      LeaderboardProvider().updateUserScore(moves);
+    }
     await showDialog(
       context: context,
       builder: (context) => const AlertDialog(
