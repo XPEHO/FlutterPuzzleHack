@@ -35,7 +35,7 @@ jobs:
         with:
           flutter-version: '2.10.0'
       - name: add firebase options
-        run: echo ${{ secrets.FIREBASE_OPTIONS }} | base64 -d > lib/firebase_options.dart
+        run: more ${{ secrets.FIREBASE_OPTIONS }} | base64 -d > lib/firebase_options.dart
       - name: analyze code
         run: |
           flutter pub get
@@ -62,7 +62,7 @@ jobs:
         with:
           flutter-version: '2.10.0'
       - name: add firebase options
-        run: echo ${{ secrets.FIREBASE_OPTIONS }} | base64 -d > lib/firebase_options.dart
+        run: more ${{ secrets.FIREBASE_OPTIONS }} | base64 -d > lib/firebase_options.dart
       - name: analyze code
         run: |
           flutter pub get
