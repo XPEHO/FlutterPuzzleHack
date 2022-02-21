@@ -25,7 +25,9 @@ class PuzzleApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
               primarySwatch: xpehoGreen,
-              textTheme: GoogleFonts.aBeeZeeTextTheme()),
+              textTheme: GoogleFonts.aBeeZeeTextTheme(),
+              backgroundColor: Colors.white),
+          themeMode: ThemeMode.light,
         );
       },
     );

@@ -12,9 +12,11 @@ class PuzzleTitle extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.app_name,
           style: isLandscape
-              ? Theme.of(context).textTheme.headline4?.copyWith(
-                    fontFamily: "QueenOfTheModernAge",
-                  )
+              ? const TextStyle(
+                  fontFamily: "QueenOfTheModernAge",
+                  fontSize: 24,
+                  color: Colors.grey,
+                )
               : const TextStyle(
                   fontFamily: "QueenOfTheModernAge",
                   fontSize: 24,
@@ -28,9 +30,11 @@ class PuzzleTitle extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.company_name,
           style: isLandscape
-              ? Theme.of(context).textTheme.headline4?.copyWith(
-                    fontFamily: "QueenOfTheModernAge",
-                  )
+              ? TextStyle(
+                  fontFamily: "QueenOfTheModernAge",
+                  fontSize: 24,
+                  color: Theme.of(context).primaryColor,
+                )
               : TextStyle(
                   fontFamily: "QueenOfTheModernAge",
                   fontSize: 24,

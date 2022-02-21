@@ -11,6 +11,7 @@ import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
+import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -147,6 +148,13 @@ class _PuzzlePageState extends State<PuzzlePage> {
     }
   }
 
+  /// Shuffle the puzzle.
+  void _darkMode(BuildContext context) {
+    setState(() {});
+    //context.read<PuzzleCubit>().darkMode();
+    _puzzleFocusNode.requestFocus();
+  }
+
   /// Build the portrait mode
   Widget _buildPortrait(BuildContext context, PuzzleState state) {
     return Scaffold(
@@ -158,7 +166,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24.0),
+                padding: EdgeInsets.symmetric(vertical: 32.0),
                 child: PuzzleTitle(isLandscape: false),
               ),
               Expanded(
@@ -173,21 +181,23 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     const SizedBox(
                       height: 18.0,
                     ),
-                    Focus(
-                      onKey: (_, event) => _onKeyEvent(
-                        context,
-                        event,
-                      ),
-                      autofocus: true,
-                      canRequestFocus: true,
-                      focusNode: _puzzleFocusNode,
-                      child: Puzzle(
-                        size: state.complexity,
-                        data: state.data,
-                        onTileTapped: (value) {
-                          _trySwap(context, value);
-                          _puzzleFocusNode.requestFocus();
-                        },
+                    Expanded(
+                      child: Focus(
+                        onKey: (_, event) => _onKeyEvent(
+                          context,
+                          event,
+                        ),
+                        autofocus: true,
+                        canRequestFocus: true,
+                        focusNode: _puzzleFocusNode,
+                        child: Puzzle(
+                          size: state.complexity,
+                          data: state.data,
+                          onTileTapped: (value) {
+                            _trySwap(context, value);
+                            _puzzleFocusNode.requestFocus();
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -198,21 +208,57 @@ class _PuzzlePageState extends State<PuzzlePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
+                    ElevatedButton(
                       onPressed: () => _shuffle(context),
-                      icon: const Icon(Icons.shuffle),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.shuffle,
+                        color: Colors.white,
+                      ),
                     ),
-                    IconButton(
+                    ElevatedButton(
                       onPressed: () => _reset(context),
-                      icon: const Icon(Icons.refresh),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.refresh,
+                        color: Colors.white,
+                      ),
                     ),
-                    IconButton(
-                      onPressed: _pickImage,
-                      icon: const Icon(Icons.attach_file),
+                    ElevatedButton(
+                      onPressed: () => _pickImage,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.attach_file,
+                        color: Colors.white,
+                      ),
                     ),
-                    IconButton(
-                      onPressed: _pickImage,
-                      icon: const Icon(Icons.attach_file),
+                    ElevatedButton(
+                      onPressed: () => _pickImage,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(18),
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.dark_mode,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -246,24 +292,66 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.moves(state.moves),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5!
-                              .copyWith(fontFamily: "QueenOfTheModernAge"),
+                          style: Theme.of(context).textTheme.headline5!,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        Column(
                           children: [
-                            IconButton(
-                              onPressed: () => _shuffle(context),
-                              icon: const Icon(
-                                Icons.shuffle,
+                            Row(children: [
+                              ElevatedButton(
+                                onPressed: () => _shuffle(context),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(18),
+                                  elevation: 0,
+                                ),
+                                child: const Icon(
+                                  Icons.shuffle,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: _pickImage,
-                              icon: const Icon(Icons.attach_file),
-                            ),
+                              ElevatedButton(
+                                onPressed: () => _reset(context),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(18),
+                                  elevation: 0,
+                                ),
+                                child: const Icon(
+                                  Icons.refresh,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ]),
+                            Row(children: [
+                              ElevatedButton(
+                                onPressed: () => _pickImage,
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(18),
+                                  elevation: 0,
+                                ),
+                                child: const Icon(
+                                  Icons.attach_file,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () => _pickImage,
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey,
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(18),
+                                  elevation: 0,
+                                ),
+                                child: const Icon(
+                                  Icons.dark_mode,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ]),
                           ],
                         ),
                         const SizedBox(height: 16),
