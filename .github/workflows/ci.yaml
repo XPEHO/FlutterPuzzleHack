@@ -44,9 +44,6 @@ jobs:
           flutter pub run msix:create
   other-builds:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        platform: [ 'android', 'web', 'macos', 'ios' ]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -63,16 +60,8 @@ jobs:
           flutter format --set-exit-if-changed .
           flutter analyze
           flutter test
-        if: matrix.platform == 'web'
-        run: |
           flutter build web
-        if: matrix.platform == 'android'
-        run: |
           flutter build apk --debug
-        if: matrix.platform == 'macos'
-        run: |
           flutter config --enable-macos-desktop
           flutter build macos --debug
-        if: matrix.platform == 'ios'
-        run: |
           flutter build ios --debug --no-codesign
