@@ -111,8 +111,10 @@ class _PuzzlePageState extends State<PuzzlePage> {
 
   /// Shuffle the puzzle.
   void _shuffle(BuildContext context) {
-    context.read<PuzzleCubit>().shuffle();
-    _puzzleFocusNode.requestFocus();
+    setState(() {
+      context.read<PuzzleCubit>().shuffle();
+      _puzzleFocusNode.requestFocus();
+    });
   }
 
   /// Reset the puzzle.

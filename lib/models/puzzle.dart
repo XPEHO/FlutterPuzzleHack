@@ -32,7 +32,7 @@ class Puzzle {
 
     return Puzzle(
       complexity: complexity,
-      data: data,
+      data: data..shuffle(),
     );
   }
 
