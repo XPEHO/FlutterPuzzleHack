@@ -57,7 +57,7 @@ jobs:
           flutter test
       - name: build windows application
         run: |
-          echo ${{ secrets.FIREBASE_OPTIONS }} > firebase_options.dart
+          echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
           flutter build windows
           flutter pub run msix:create
   other-builds:
@@ -90,21 +90,21 @@ jobs:
       - name: build web distribution
         if: matrix.platform == 'web'
         run: |
-          echo ${{ secrets.FIREBASE_OPTIONS }} > firebase_options.dart
+          echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
           flutter build web
       - name: build debug apk
         if: matrix.platform == 'android'
         run: |
-          echo ${{ secrets.FIREBASE_OPTIONS }} > firebase_options.dart
+          echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
           flutter build apk --debug
       - name: build debug macos
         if: matrix.platform == 'macos'
         run: |
-          echo ${{ secrets.FIREBASE_OPTIONS }} > firebase_options.dart
+          echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
           flutter config --enable-macos-desktop
           flutter build macos --debug
       - name: build debug ios without code signing
         if: matrix.platform == 'ios'
         run: |
-          echo ${{ secrets.FIREBASE_OPTIONS }} > firebase_options.dart
+          echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
           flutter build ios --debug --no-codesign
