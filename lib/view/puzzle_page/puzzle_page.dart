@@ -157,9 +157,11 @@ class _PuzzlePageState extends State<PuzzlePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 32.0),
-                child: PuzzleTitle(),
+              Padding(
+                padding: isMobile()
+                    ? const EdgeInsets.symmetric(vertical: 24.0)
+                    : const EdgeInsets.symmetric(vertical: 8.0),
+                child: const PuzzleTitle(),
               ),
               Expanded(
                 child: Column(
@@ -171,17 +173,18 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       style: Theme.of(context).textTheme.headline5!,
                     ),
                     const SizedBox(
-                      height: 18.0,
+                      height: 12.0,
                     ),
-                    Expanded(
-                      child: Focus(
-                        onKey: (_, event) => _onKeyEvent(
-                          context,
-                          event,
-                        ),
-                        autofocus: true,
-                        canRequestFocus: true,
-                        focusNode: _puzzleFocusNode,
+                    Focus(
+                      onKey: (_, event) => _onKeyEvent(
+                        context,
+                        event,
+                      ),
+                      autofocus: true,
+                      canRequestFocus: true,
+                      focusNode: _puzzleFocusNode,
+                      child: FractionallySizedBox(
+                        widthFactor: isMobile() ? 1 : 0.7,
                         child: Puzzle(
                           size: state.complexity,
                           data: state.data,
@@ -196,7 +199,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                padding: isMobile()
+                    ? const EdgeInsets.symmetric(vertical: 24.0)
+                    : const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
