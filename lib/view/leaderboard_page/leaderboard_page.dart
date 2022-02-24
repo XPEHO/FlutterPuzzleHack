@@ -33,7 +33,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: FutureBuilder(
         future: LeaderboardProvider().fetchScores(),
         builder: (context, snapshot) {
@@ -132,7 +132,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     height: 100.0,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/mascotte.jpeg'),
+                        image: AssetImage(
+                            'assets/images/mascotte_without_background.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -145,7 +146,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     height: 300.0,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/mascotte.jpeg'),
+                        image: AssetImage(
+                            'assets/images/mascotte_without_background.png'),
                         fit: BoxFit.cover,
                       ),
                     ),

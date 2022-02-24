@@ -14,3 +14,4 @@ Map<int, Color> color = {
 };
 
 MaterialColor xpehoGreen = MaterialColor(0xFFB3D26B, color);
+Color xpehoGreenDark = const Color.fromARGB(255, 11, 66, 40);

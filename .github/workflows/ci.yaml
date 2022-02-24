@@ -10,7 +10,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.0'
+          flutter-version: '2.10.2'
       - name: create firebase options
         run: |
           echo $FIREBASE_OPTIONS | base64 -d > lib/firebase_options.dart
@@ -39,7 +39,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.0'
+          flutter-version: '2.10.2'
       - name: create firebase options
         run: |
           echo "${{ env.FIREBASE_OPTIONS }}" | base64 -d > lib\firebase_options.dart
@@ -71,7 +71,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.0'
+          flutter-version: '2.10.2'
       - name: create firebase options
         run: |
           echo $FIREBASE_OPTIONS | base64 -d > lib/firebase_options.dart

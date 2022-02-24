@@ -168,7 +168,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -310,7 +310,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Row(
         children: [
           Expanded(
@@ -437,7 +437,8 @@ class _PuzzlePageState extends State<PuzzlePage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Image.asset('assets/images/mascotte.jpeg'),
+              child:
+                  Image.asset('assets/images/mascotte_without_background.png'),
             ),
           ),
         ],

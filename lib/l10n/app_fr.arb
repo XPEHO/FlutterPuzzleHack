@@ -16,5 +16,6 @@
     "nickname_hint": "Entrez votre pseudo...",
     "your_score": "Votre score: {value}",
     "empty_nickname_error": "Le pseudonyme ne peut être vide",
-    "leader_board_subtitle": "Tableau des scores : "
+    "leader_board_subtitle": "Tableau des scores : ",
+    "bottom_badges_title": "Multiplateforme : "
 }
