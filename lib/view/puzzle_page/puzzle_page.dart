@@ -352,7 +352,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () => _pickImage,
+                          onPressed: () => _pickImage(),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.grey,
                             shape: const CircleBorder(),
