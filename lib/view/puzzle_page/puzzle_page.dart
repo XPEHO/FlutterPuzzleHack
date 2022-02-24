@@ -12,6 +12,7 @@ import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
+import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -162,49 +163,49 @@ class _PuzzlePageState extends State<PuzzlePage> {
             children: [
               Padding(
                 padding: isMobile()
-                    ? const EdgeInsets.symmetric(vertical: 24.0)
+                    ? const EdgeInsets.symmetric(vertical: 16.0)
                     : const EdgeInsets.symmetric(vertical: 8.0),
                 child: const PuzzleTitle(),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.moves(state.moves),
-                      style: Theme.of(context).textTheme.headline5!,
-                    ),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                    Focus(
-                      onKey: (_, event) => _onKeyEvent(
-                        context,
-                        event,
-                      ),
-                      autofocus: true,
-                      canRequestFocus: true,
-                      focusNode: _puzzleFocusNode,
-                      child: FractionallySizedBox(
-                        widthFactor: isMobile() ? 1 : 0.7,
-                        child: Puzzle(
-                          size: state.complexity,
-                          data: state.data,
-                          onTileTapped: (value) {
-                            _trySwap(context, value);
-                            _puzzleFocusNode.requestFocus();
-                          },
+                child: Focus(
+                  onKey: (_, event) => _onKeyEvent(
+                    context,
+                    event,
+                  ),
+                  autofocus: true,
+                  canRequestFocus: true,
+                  focusNode: _puzzleFocusNode,
+                  child: FractionallySizedBox(
+                    widthFactor: isMobile() ? 1 : 0.7,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.moves(state.moves),
+                          style: Theme.of(context).textTheme.headline5!,
                         ),
-                      ),
+                        const SizedBox(
+                          height: 12.0,
+                        ),
+                        Flexible(
+                          child: Puzzle(
+                            size: state.complexity,
+                            data: state.data,
+                            onTileTapped: (value) {
+                              _trySwap(context, value);
+                              _puzzleFocusNode.requestFocus();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               Padding(
-                padding: isMobile()
-                    ? const EdgeInsets.symmetric(vertical: 24.0)
-                    : const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -249,16 +250,24 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        null;
+                        setState(() {
+                          audioService.volume == 1
+                              ? audioService.updateVolume(0)
+                              : audioService.updateVolume(1);
+                        });
+                        _puzzleFocusNode.requestFocus();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.grey,
+                        primary:
+                            audioService.volume == 1 ? xpehoGreen : Colors.grey,
                         shape: const CircleBorder(),
                         padding: const EdgeInsets.all(18),
                         elevation: 0,
                       ),
-                      child: const Icon(
-                        Icons.volume_mute,
+                      child: Icon(
+                        audioService.volume == 1
+                            ? Icons.volume_up
+                            : Icons.volume_mute,
                         color: Colors.white,
                       ),
                     ),
@@ -290,97 +299,69 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       alignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () => _shuffle(context),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.grey,
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(32),
-                                elevation: 0,
-                              ),
-                              child: const Icon(
-                                Icons.shuffle,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 24),
-                            ElevatedButton(
-                              onPressed: () => _reset(context),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.grey,
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(32),
-                                elevation: 0,
-                              ),
-                              child: const Icon(
-                                Icons.refresh,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () => _pickImage(),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.grey,
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(32),
-                                elevation: 0,
-                              ),
-                              child: const Icon(
-                                Icons.attach_file,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 24),
-                            ElevatedButton(
-                              onPressed: () {
-                                null;
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.grey,
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(32),
-                                elevation: 0,
-                              ),
-                              child: const Icon(
-                                Icons.volume_up,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        )
-                        /*
-                        Visibility(
-                          visible: false,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.volume_down),
-                              Flexible(
-                                child: Slider(
-                                  activeColor: Colors.indigoAccent,
-                                  min: 0.0,
-                                  max: 1.0,
-                                  onChanged: (newRating) async {
-                                    setState(() {
-                                      audioService.volume = newRating;
-                                    });
-                                    audioService.updateVolume(newRating);
-                                    _puzzleFocusNode.requestFocus();
-                                  },
-                                  value: audioService.volume,
-                                ),
-                              ),
-                              const Icon(Icons.volume_up),
-                            ],
+                        ElevatedButton(
+                          onPressed: () => _shuffle(context),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey,
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(18),
+                            elevation: 0,
+                          ),
+                          child: const Icon(
+                            Icons.shuffle,
+                            color: Colors.white,
                           ),
                         ),
-                        */
+                        ElevatedButton(
+                          onPressed: () => _reset(context),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey,
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(18),
+                            elevation: 0,
+                          ),
+                          child: const Icon(
+                            Icons.refresh,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => _pickImage,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey,
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(18),
+                            elevation: 0,
+                          ),
+                          child: const Icon(
+                            Icons.attach_file,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              audioService.volume == 1
+                                  ? audioService.updateVolume(0)
+                                  : audioService.updateVolume(1);
+                            });
+                            _puzzleFocusNode.requestFocus();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: audioService.volume == 1
+                                ? xpehoGreen
+                                : Colors.grey,
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(18),
+                            elevation: 0,
+                          ),
+                          child: Icon(
+                            audioService.volume == 1
+                                ? Icons.volume_up
+                                : Icons.volume_mute,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
