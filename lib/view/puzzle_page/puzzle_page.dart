@@ -12,6 +12,7 @@ import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
+import 'package:puzzle/theme/theme.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -328,45 +329,29 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () => _pickImage,
+                          onPressed: () {
+                            setState(() {
+                              audioService.volume == 1
+                                  ? audioService.updateVolume(0)
+                                  : audioService.updateVolume(1);
+                            });
+                            _puzzleFocusNode.requestFocus();
+                          },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey,
+                            primary: audioService.volume == 1
+                                ? xpehoGreen
+                                : Colors.grey,
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(18),
                             elevation: 0,
                           ),
-                          child: const Icon(
-                            Icons.volume_up,
+                          child: Icon(
+                            audioService.volume == 1
+                                ? Icons.volume_up
+                                : Icons.volume_mute,
                             color: Colors.white,
                           ),
                         ),
-                        /*
-                        Visibility(
-                          visible: false,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.volume_down),
-                              Flexible(
-                                child: Slider(
-                                  activeColor: Colors.indigoAccent,
-                                  min: 0.0,
-                                  max: 1.0,
-                                  onChanged: (newRating) async {
-                                    setState(() {
-                                      audioService.volume = newRating;
-                                    });
-                                    audioService.updateVolume(newRating);
-                                    _puzzleFocusNode.requestFocus();
-                                  },
-                                  value: audioService.volume,
-                                ),
-                              ),
-                              const Icon(Icons.volume_up),
-                            ],
-                          ),
-                        ),
-                        */
                       ],
                     ),
                   ),
