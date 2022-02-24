@@ -249,15 +249,25 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () => _pickImage,
+                      onPressed: () {
+                        setState(() {
+                          audioService.volume == 1
+                              ? audioService.updateVolume(0)
+                              : audioService.updateVolume(1);
+                        });
+                        _puzzleFocusNode.requestFocus();
+                      },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.grey,
+                        primary:
+                            audioService.volume == 1 ? xpehoGreen : Colors.grey,
                         shape: const CircleBorder(),
                         padding: const EdgeInsets.all(18),
                         elevation: 0,
                       ),
-                      child: const Icon(
-                        Icons.volume_mute,
+                      child: Icon(
+                        audioService.volume == 1
+                            ? Icons.volume_up
+                            : Icons.volume_mute,
                         color: Colors.white,
                       ),
                     ),
