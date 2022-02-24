@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
+import 'package:puzzle/view/homepage/homepage.dart';
 import 'package:puzzle/view/leaderboard_page/widgets/scores_list.dart';
 import 'package:puzzle/view/leaderboard_page/widgets/user_score.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,6 +21,18 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          padding: const EdgeInsets.only(
+            left: 4.0,
+            top: 8.0,
+          ),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => GoRouter.of(context).go(HomePage.route),
+        ),
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
       backgroundColor: Colors.white,
       body: FutureBuilder(
         future: LeaderboardProvider().fetchScores(),
@@ -30,7 +44,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           }
           scores = snapshot.data as Map<String, dynamic>;
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.only(
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0,
+            ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

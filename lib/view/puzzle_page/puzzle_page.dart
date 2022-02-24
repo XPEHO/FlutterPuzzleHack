@@ -8,11 +8,13 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:puzzle/bloc/bloc.dart';
 import 'package:puzzle/providers/leaderboard_provider.dart';
 import 'package:puzzle/services/audio_service.dart';
 import 'package:puzzle/services/shared.dart';
 import 'package:puzzle/theme/theme.dart';
+import 'package:puzzle/view/homepage/homepage.dart';
 import 'package:puzzle/view/puzzle_page/widgets/widgets.dart';
 import 'package:shake/shake.dart';
 
@@ -154,6 +156,18 @@ class _PuzzlePageState extends State<PuzzlePage> {
   /// Build the portrait mode
   Widget _buildPortrait(BuildContext context, PuzzleState state) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          padding: const EdgeInsets.only(
+            left: 4.0,
+            top: 8.0,
+          ),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => GoRouter.of(context).go(HomePage.route),
+        ),
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -284,6 +298,18 @@ class _PuzzlePageState extends State<PuzzlePage> {
   /// Build the landscape mode
   Widget _buildLandscape(BuildContext context, PuzzleState state) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          padding: const EdgeInsets.only(
+            left: 4.0,
+            top: 8.0,
+          ),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => GoRouter.of(context).go(HomePage.route),
+        ),
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
       backgroundColor: Colors.white,
       body: Row(
         children: [
@@ -326,7 +352,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () => _pickImage,
+                          onPressed: () => _pickImage(),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.grey,
                             shape: const CircleBorder(),
