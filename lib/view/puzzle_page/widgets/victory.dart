@@ -10,23 +10,26 @@ class Victory extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.star,
-              color: Colors.yellow,
-            ),
-            Icon(
-              Icons.star,
-              color: Colors.yellow,
-              size: 50,
-            ),
-            Icon(
-              Icons.star,
-              color: Colors.yellow,
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.star,
+                color: Colors.yellow,
+              ),
+              Icon(
+                Icons.star,
+                color: Colors.yellow,
+                size: 50,
+              ),
+              Icon(
+                Icons.star,
+                color: Colors.yellow,
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(16.0),
