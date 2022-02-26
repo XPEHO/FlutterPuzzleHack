@@ -20,6 +20,7 @@ jobs:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
       - run: |
           flutter pub get
+          flutter config --enable-web
           flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
