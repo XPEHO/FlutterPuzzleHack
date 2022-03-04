@@ -15,24 +15,28 @@ class Puzzle {
   /// Generate value for the puzzle
   factory Puzzle.generate(int complexity) {
     final data = List<Tile>.generate(complexity * complexity, (index) {
-      var value = index + 1;
-      if (value == complexity * complexity) {
-        return Tile(
-          targetX: complexity - 1,
-          targetY: complexity - 1,
-          value: 0,
-        );
-      }
-      return Tile(
-        targetX: index % complexity,
-        targetY: index ~/ complexity,
-        value: value,
-      );
+      return generateTile(index, complexity);
     });
 
     return Puzzle(
       complexity: complexity,
       data: data,
+    );
+  }
+
+  static Tile generateTile(int index, int complexity) {
+    var value = index + 1;
+    if (value == complexity * complexity) {
+      return Tile(
+        targetX: complexity - 1,
+        targetY: complexity - 1,
+        value: 0,
+      );
+    }
+    return Tile(
+      targetX: index % complexity,
+      targetY: index ~/ complexity,
+      value: value,
     );
   }
 

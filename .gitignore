@@ -53,3 +53,6 @@ coverage/
 
 # fvm
 .fvm/
+
+# ios
+ios/Runner/GoogleService-Info.plist

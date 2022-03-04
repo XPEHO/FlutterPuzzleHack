@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:puzzle/bloc/bloc.dart';
@@ -8,8 +11,40 @@ import 'package:puzzle/models/models.dart';
 import 'package:puzzle/services/audio_service.dart';
 
 class PuzzleCubit extends Cubit<PuzzleState> {
-  PuzzleCubit() : super(PuzzleState(Puzzle.generate(4)..shuffle()));
+  PuzzleCubit() : super(PuzzleState(Puzzle.generate(3)..shuffle())) {
+    channel.setMethodCallHandler((call) async {
+      debugPrint(
+          "handling new call from native ${call.method} with arguments ${call.arguments}");
+      // Receive data from Native
+      switch (call.method) {
+        case "sendMovesToFlutter":
+          var data = call.arguments as String;
+          debugPrint("received moves from native: $data");
+          emitNewState(state.puzzle, int.parse(data), sendToNative: false);
+          break;
+        case "sendPuzzleToFlutter":
+          var data = call.arguments as String;
+          debugPrint("received new puzzle state from native $data");
+          List<String> values = data.split(",");
+          debugPrint("values: $values");
+          emitNewState(
+              Puzzle(
+                complexity: state.puzzle.complexity,
+                data: values
+                    .map((v) => Puzzle.generateTile(
+                        int.parse(v) - 1, state.puzzle.complexity))
+                    .toList(),
+              ),
+              state.moves,
+              sendToNative: false);
+          break;
+        default:
+          break;
+      }
+    });
+  }
   AudioService audioService = GetIt.I.get<AudioService>();
+  final channel = const MethodChannel('fr.xpeho.puzzle');
 
   void shuffle() {
     emitNewState(state.puzzle.shuffle(), 0);
@@ -17,10 +52,12 @@ class PuzzleCubit extends Cubit<PuzzleState> {
 
   /// try to swap the tile with the empty tile
   trySwap(int value) {
-    if (state.puzzle.canSwap(value)) {
-      audioService.play("sounds/Success.mp3", isLocal: true);
-    } else {
-      audioService.play("sounds/Error.mp3", isLocal: true);
+    if (kIsWeb || !Platform.isIOS) {
+      if (state.puzzle.canSwap(value)) {
+        audioService.play("sounds/Success.mp3", isLocal: true);
+      } else {
+        audioService.play("sounds/Error.mp3", isLocal: true);
+      }
     }
     emitNewState(state.puzzle.trySwap(value), state.moves + 1);
   }
@@ -80,8 +117,17 @@ class PuzzleCubit extends Cubit<PuzzleState> {
     emitNewState(Puzzle.generate(state.puzzle.complexity - 1), 0);
   }
 
-  void emitNewState(Puzzle newPuzzle, int moves) {
+  void emitNewState(Puzzle newPuzzle, int moves, {bool sendToNative = true}) {
     emit(state.copyWith(puzzle: newPuzzle, moves: moves));
+    debugPrint("Sending puzzle to native: ${newPuzzle.values.join(",")}");
+    if (sendToNative) {
+      channel.invokeMethod("puzzleToWatch", {
+        "method": "sendPuzzleToNative",
+        "puzzle": newPuzzle.values.join(",")
+      });
+      channel.invokeMethod("movesToWatch",
+          {"method": "sendMovesToNative", "moves": moves.toString()});
+    }
   }
 
   Future<void> loadUiImage(Uint8List? bytes) async {
