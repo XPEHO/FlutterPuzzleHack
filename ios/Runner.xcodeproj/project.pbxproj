@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		104A616927C7848F009F7722 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 104A616827C7848F009F7722 /* GoogleService-Info.plist */; };
+		104A616F27CD28C2009F7722 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 104A616E27CD28C2009F7722 /* Assets.xcassets */; };
+		104A617527CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 104A617427CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		104A617A27CD28C2009F7722 /* RunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A617927CD28C2009F7722 /* RunnerApp.swift */; };
+		104A617C27CD28C2009F7722 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A617B27CD28C2009F7722 /* ContentView.swift */; };
+		104A617E27CD28C2009F7722 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A617D27CD28C2009F7722 /* NotificationController.swift */; };
+		104A618027CD28C2009F7722 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A617F27CD28C2009F7722 /* NotificationView.swift */; };
+		104A618227CD28C2009F7722 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A618127CD28C2009F7722 /* ComplicationController.swift */; };
+		104A618427CD28C2009F7722 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 104A618327CD28C2009F7722 /* Assets.xcassets */; };
+		104A618727CD28C2009F7722 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 104A618627CD28C2009F7722 /* Preview Assets.xcassets */; };
+		104A619327CD28C2009F7722 /* puzzlewatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A619227CD28C2009F7722 /* puzzlewatchTests.swift */; };
+		104A619D27CD28C2009F7722 /* puzzlewatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A619C27CD28C2009F7722 /* puzzlewatchUITests.swift */; };
+		104A619F27CD28C2009F7722 /* puzzlewatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A619E27CD28C2009F7722 /* puzzlewatchUITestsLaunchTests.swift */; };
+		104A61A227CD28C2009F7722 /* puzzlewatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 104A616C27CD28C1009F7722 /* puzzlewatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		104A61B627CD2906009F7722 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A61B527CD2906009F7722 /* WatchViewModel.swift */; };
+		104A61B827CD2924009F7722 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A61B727CD2924009F7722 /* TileView.swift */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		1FDBDE8FE01B48F55FD21DAE /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0498AECB4317D9D7ACB6EADC /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -16,7 +32,60 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		104A617627CD28C2009F7722 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104A617327CD28C2009F7722;
+			remoteInfo = "puzzlewatch WatchKit Extension";
+		};
+		104A618F27CD28C2009F7722 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104A617327CD28C2009F7722;
+			remoteInfo = "puzzlewatch WatchKit Extension";
+		};
+		104A619927CD28C2009F7722 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104A616B27CD28C1009F7722;
+			remoteInfo = puzzlewatch;
+		};
+		104A61A027CD28C2009F7722 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104A616B27CD28C1009F7722;
+			remoteInfo = puzzlewatch;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		104A61A327CD28C2009F7722 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				104A61A227CD28C2009F7722 /* puzzlewatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A61A727CD28C2009F7722 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				104A617527CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -31,6 +100,26 @@
 
 /* Begin PBXFileReference section */
 		0498AECB4317D9D7ACB6EADC /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A616827C7848F009F7722 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		104A616C27CD28C1009F7722 /* puzzlewatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puzzlewatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A616E27CD28C2009F7722 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		104A617427CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "puzzlewatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A617927CD28C2009F7722 /* RunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerApp.swift; sourceTree = "<group>"; };
+		104A617B27CD28C2009F7722 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		104A617D27CD28C2009F7722 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		104A617F27CD28C2009F7722 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		104A618127CD28C2009F7722 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		104A618327CD28C2009F7722 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		104A618627CD28C2009F7722 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		104A618827CD28C2009F7722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		104A618927CD28C2009F7722 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		104A618E27CD28C2009F7722 /* puzzlewatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = puzzlewatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A619227CD28C2009F7722 /* puzzlewatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzlewatchTests.swift; sourceTree = "<group>"; };
+		104A619827CD28C2009F7722 /* puzzlewatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = puzzlewatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A619C27CD28C2009F7722 /* puzzlewatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzlewatchUITests.swift; sourceTree = "<group>"; };
+		104A619E27CD28C2009F7722 /* puzzlewatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzlewatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		104A61B527CD2906009F7722 /* WatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchViewModel.swift; sourceTree = "<group>"; };
+		104A61B727CD2924009F7722 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		14AA0355116608B06C6C398F /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -50,6 +139,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		104A617127CD28C2009F7722 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A618B27CD28C2009F7722 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A619527CD28C2009F7722 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EB1CF9000F007C117D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,6 +179,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		104A616D27CD28C1009F7722 /* puzzlewatch */ = {
+			isa = PBXGroup;
+			children = (
+				104A616E27CD28C2009F7722 /* Assets.xcassets */,
+			);
+			path = puzzlewatch;
+			sourceTree = "<group>";
+		};
+		104A617827CD28C2009F7722 /* puzzlewatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				104A617927CD28C2009F7722 /* RunnerApp.swift */,
+				104A617B27CD28C2009F7722 /* ContentView.swift */,
+				104A617D27CD28C2009F7722 /* NotificationController.swift */,
+				104A617F27CD28C2009F7722 /* NotificationView.swift */,
+				104A618127CD28C2009F7722 /* ComplicationController.swift */,
+				104A618327CD28C2009F7722 /* Assets.xcassets */,
+				104A618827CD28C2009F7722 /* Info.plist */,
+				104A618927CD28C2009F7722 /* PushNotificationPayload.apns */,
+				104A618527CD28C2009F7722 /* Preview Content */,
+				104A61B527CD2906009F7722 /* WatchViewModel.swift */,
+				104A61B727CD2924009F7722 /* TileView.swift */,
+			);
+			path = "puzzlewatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		104A618527CD28C2009F7722 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				104A618627CD28C2009F7722 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		104A619127CD28C2009F7722 /* puzzlewatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				104A619227CD28C2009F7722 /* puzzlewatchTests.swift */,
+			);
+			path = puzzlewatchTests;
+			sourceTree = "<group>";
+		};
+		104A619B27CD28C2009F7722 /* puzzlewatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				104A619C27CD28C2009F7722 /* puzzlewatchUITests.swift */,
+				104A619E27CD28C2009F7722 /* puzzlewatchUITestsLaunchTests.swift */,
+			);
+			path = puzzlewatchUITests;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +246,10 @@
 			children = (
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
+				104A616D27CD28C1009F7722 /* puzzlewatch */,
+				104A617827CD28C2009F7722 /* puzzlewatch WatchKit Extension */,
+				104A619127CD28C2009F7722 /* puzzlewatchTests */,
+				104A619B27CD28C2009F7722 /* puzzlewatchUITests */,
 				97C146EF1CF9000F007C117D /* Products */,
 				9D8FAAC1E732E5DDB91A8610 /* Pods */,
 				0E6E74F4BCBCF1B816EBE68D /* Frameworks */,
@@ -95,6 +260,10 @@
 			isa = PBXGroup;
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
+				104A616C27CD28C1009F7722 /* puzzlewatch.app */,
+				104A617427CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex */,
+				104A618E27CD28C2009F7722 /* puzzlewatchTests.xctest */,
+				104A619827CD28C2009F7722 /* puzzlewatchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +271,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				104A616827C7848F009F7722 /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -127,6 +297,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		104A616B27CD28C1009F7722 /* puzzlewatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104A61B227CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatch" */;
+			buildPhases = (
+				104A616A27CD28C1009F7722 /* Resources */,
+				104A61A727CD28C2009F7722 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				104A617727CD28C2009F7722 /* PBXTargetDependency */,
+			);
+			name = puzzlewatch;
+			productName = puzzlewatch;
+			productReference = 104A616C27CD28C1009F7722 /* puzzlewatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		104A617327CD28C2009F7722 /* puzzlewatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104A61B127CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatch WatchKit Extension" */;
+			buildPhases = (
+				104A617027CD28C2009F7722 /* Sources */,
+				104A617127CD28C2009F7722 /* Frameworks */,
+				104A617227CD28C2009F7722 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "puzzlewatch WatchKit Extension";
+			productName = "puzzlewatch WatchKit Extension";
+			productReference = 104A617427CD28C2009F7722 /* puzzlewatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		104A618D27CD28C2009F7722 /* puzzlewatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104A61B327CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatchTests" */;
+			buildPhases = (
+				104A618A27CD28C2009F7722 /* Sources */,
+				104A618B27CD28C2009F7722 /* Frameworks */,
+				104A618C27CD28C2009F7722 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				104A619027CD28C2009F7722 /* PBXTargetDependency */,
+			);
+			name = puzzlewatchTests;
+			productName = puzzlewatchTests;
+			productReference = 104A618E27CD28C2009F7722 /* puzzlewatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		104A619727CD28C2009F7722 /* puzzlewatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104A61B427CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatchUITests" */;
+			buildPhases = (
+				104A619427CD28C2009F7722 /* Sources */,
+				104A619527CD28C2009F7722 /* Frameworks */,
+				104A619627CD28C2009F7722 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				104A619A27CD28C2009F7722 /* PBXTargetDependency */,
+			);
+			name = puzzlewatchUITests;
+			productName = puzzlewatchUITests;
+			productReference = 104A619827CD28C2009F7722 /* puzzlewatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		97C146ED1CF9000F007C117D /* Runner */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
@@ -140,10 +380,12 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				598646561EA4E65976AF0527 /* [CP] Embed Pods Frameworks */,
 				82EB98427F2611F929EBDAF0 /* [CP] Copy Pods Resources */,
+				104A61A327CD28C2009F7722 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				104A61A127CD28C2009F7722 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -156,9 +398,24 @@
 		97C146E61CF9000F007C117D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					104A616B27CD28C1009F7722 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					104A617327CD28C2009F7722 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					104A618D27CD28C2009F7722 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 104A617327CD28C2009F7722;
+					};
+					104A619727CD28C2009F7722 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 104A616B27CD28C1009F7722;
+					};
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1100;
@@ -179,17 +436,53 @@
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
+				104A616B27CD28C1009F7722 /* puzzlewatch */,
+				104A617327CD28C2009F7722 /* puzzlewatch WatchKit Extension */,
+				104A618D27CD28C2009F7722 /* puzzlewatchTests */,
+				104A619727CD28C2009F7722 /* puzzlewatchUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		104A616A27CD28C1009F7722 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104A616F27CD28C2009F7722 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A617227CD28C2009F7722 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104A618727CD28C2009F7722 /* Preview Assets.xcassets in Resources */,
+				104A618427CD28C2009F7722 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A618C27CD28C2009F7722 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A619627CD28C2009F7722 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EC1CF9000F007C117D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				104A616927C7848F009F7722 /* GoogleService-Info.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
@@ -285,6 +578,37 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		104A617027CD28C2009F7722 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104A617E27CD28C2009F7722 /* NotificationController.swift in Sources */,
+				104A61B827CD2924009F7722 /* TileView.swift in Sources */,
+				104A617C27CD28C2009F7722 /* ContentView.swift in Sources */,
+				104A61B627CD2906009F7722 /* WatchViewModel.swift in Sources */,
+				104A618227CD28C2009F7722 /* ComplicationController.swift in Sources */,
+				104A617A27CD28C2009F7722 /* RunnerApp.swift in Sources */,
+				104A618027CD28C2009F7722 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A618A27CD28C2009F7722 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104A619327CD28C2009F7722 /* puzzlewatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104A619427CD28C2009F7722 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104A619F27CD28C2009F7722 /* puzzlewatchUITestsLaunchTests.swift in Sources */,
+				104A619D27CD28C2009F7722 /* puzzlewatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EA1CF9000F007C117D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +619,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		104A617727CD28C2009F7722 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 104A617327CD28C2009F7722 /* puzzlewatch WatchKit Extension */;
+			targetProxy = 104A617627CD28C2009F7722 /* PBXContainerItemProxy */;
+		};
+		104A619027CD28C2009F7722 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 104A617327CD28C2009F7722 /* puzzlewatch WatchKit Extension */;
+			targetProxy = 104A618F27CD28C2009F7722 /* PBXContainerItemProxy */;
+		};
+		104A619A27CD28C2009F7722 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 104A616B27CD28C1009F7722 /* puzzlewatch */;
+			targetProxy = 104A619927CD28C2009F7722 /* PBXContainerItemProxy */;
+		};
+		104A61A127CD28C2009F7722 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 104A616B27CD28C1009F7722 /* puzzlewatch */;
+			targetProxy = 104A61A027CD28C2009F7722 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
@@ -316,9 +663,409 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		104A61A427CD28C2009F7722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = puzzlewatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = puzzlewatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = fr.xpeho.puzzle;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		104A61A527CD28C2009F7722 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = puzzlewatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = puzzlewatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = fr.xpeho.puzzle;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		104A61A627CD28C2009F7722 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = puzzlewatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = puzzlewatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = fr.xpeho.puzzle;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Profile;
+		};
+		104A61A827CD28C2009F7722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"puzzlewatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "puzzlewatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "puzzlewatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		104A61A927CD28C2009F7722 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"puzzlewatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "puzzlewatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "puzzlewatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		104A61AA27CD28C2009F7722 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"puzzlewatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "puzzlewatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "puzzlewatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Profile;
+		};
+		104A61AB27CD28C2009F7722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/puzzlewatch WatchKit Extension.appex/puzzlewatch WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		104A61AC27CD28C2009F7722 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/puzzlewatch WatchKit Extension.appex/puzzlewatch WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		104A61AD27CD28C2009F7722 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/puzzlewatch WatchKit Extension.appex/puzzlewatch WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Profile;
+		};
+		104A61AE27CD28C2009F7722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = puzzlewatch;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		104A61AF27CD28C2009F7722 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = puzzlewatch;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		104A61B027CD28C2009F7722 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.xpeho.puzzle.puzzlewatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = puzzlewatch;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Profile;
+		};
 		249021D3217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -360,7 +1107,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -373,7 +1121,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 99622Z377A;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -447,6 +1195,7 @@
 		97C147041CF9000F007C117D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -488,7 +1237,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,7 +1253,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 99622Z377A;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -527,7 +1277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 99622Z377A;
+				DEVELOPMENT_TEAM = H5ZMR627PF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -546,6 +1296,46 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		104A61B127CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104A61A827CD28C2009F7722 /* Debug */,
+				104A61A927CD28C2009F7722 /* Release */,
+				104A61AA27CD28C2009F7722 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		104A61B227CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104A61A427CD28C2009F7722 /* Debug */,
+				104A61A527CD28C2009F7722 /* Release */,
+				104A61A627CD28C2009F7722 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		104A61B327CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104A61AB27CD28C2009F7722 /* Debug */,
+				104A61AC27CD28C2009F7722 /* Release */,
+				104A61AD27CD28C2009F7722 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		104A61B427CD28C2009F7722 /* Build configuration list for PBXNativeTarget "puzzlewatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104A61AE27CD28C2009F7722 /* Debug */,
+				104A61AF27CD28C2009F7722 /* Release */,
+				104A61B027CD28C2009F7722 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
